@@ -1,18 +1,15 @@
 from filmreview import db
-# from flask_wtf import FlaskForm
-# from wtforms import StringField, PasswordField, BooleanField
-# from wtforms.validators import InputRequired, Email, Length
 
 
-# class Users(db.Model):
-#     """ Schema for Users model for login/signup """
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(25), unique=True, nullable=False)
-#     password = db.Column(db.String, unique=False, nullable=False)
+class Users(db.Model):
+    """ Schema for Users model for login/signup """
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(25), unique=True, nullable=False)
+    password = db.Column(db.String, unique=False, nullable=False)
 
-#     def __repr__(self):
-#         # __repr__ to rep itself in the form of a string
-#         return self.username
+    def __repr__(self):
+        # __repr__ to rep itself in the form of a string
+        return self.username
 
 
 class Watch_list(db.Model):

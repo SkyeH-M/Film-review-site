@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from flask_wtf import FlaskForm %}
+{% import wtforms as wtf %}
 {% block content %}
 
 <h2 class="text-darken-4 center-align">Login</h2>
@@ -9,10 +11,11 @@
     <div class="col s12">
         <form class="login" method="POST" action="/login">
             <h3>Please Login to your account</h3>
-            <label for="inputUsername">Username</label>
+            {{ wtf.form_field(form.username) }}
+            <!-- <label for="inputUsername">Username</label>
             <input type="text" id="inputUsername" class="validate" required autofocus>
             <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" class="validate" required>
+            <input type="password" id="inputPassword" class="validate" required> -->
             <!-- Materialize Switches -->
             <div class="switch">
                 <label>
