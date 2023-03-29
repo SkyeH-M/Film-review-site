@@ -1,4 +1,5 @@
 from flask import render_template
+from flask_bootstrap import Bootstrap
 from filmreview import app, db
 from filmreview.models import Watch_list, Users
 

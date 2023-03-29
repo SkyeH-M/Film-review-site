@@ -1,22 +1,33 @@
 {% extends "base.html" %}
-{% from flask_wtf import FlaskForm %}
-{% import wtforms as wtf %}
 {% block content %}
 
 <h2 class="text-darken-4 center-align">Login</h2>
 <p>This is the login page
 </p>
 
-<div class="row">
+<!-- Bootstrap Log In form -->
+<form class="login" method="POST" action="/login">
+    <h4>Please enter your details to log in</h4>
+    <div class="mb-3 col-sm-6">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="username" required>
+      </div>
+    <div class="mb-3 col-sm-6">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+      <br>
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </form>
+
+<!-- <div class="row">
     <div class="col s12">
         <form class="login" method="POST" action="/login">
             <h3>Please Login to your account</h3>
-            {{ wtf.form_field(form.username) }}
-            <!-- <label for="inputUsername">Username</label>
+            <label for="inputUsername">Username</label>
             <input type="text" id="inputUsername" class="validate" required autofocus>
             <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" class="validate" required> -->
-            <!-- Materialize Switches -->
+            <input type="password" id="inputPassword" class="validate" required>
             <div class="switch">
                 <label>
                     <input type="checkbox" name="checkbox">
@@ -28,6 +39,6 @@
             <button class="btn deep-purple darken-2">Log In</button>
         </form>
         </div>
-</div>
+</div> -->
 
 {% endblock %}

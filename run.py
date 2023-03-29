@@ -1,8 +1,4 @@
 import os
-# keep this?
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-# up to here
 from filmreview import app
 
 
