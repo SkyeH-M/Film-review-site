@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "bootstrap4/form.html" import render_field, render_form %}
+{% from "bootstrap4/form.html" import render_field %}
 {% block content %}
 
 <h3 class="center-align">Sign up <i class="fa-solid fa-user-plus"></i></h3>
@@ -13,6 +13,7 @@
     {{ render_field(form.username) }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
+
     <!-- <div class="mb-3 col-sm-6">
       <label for="email" class="form-label">Email address</label>
       <input type="email" class="form-control" id="email" aria-describedby="email" required>

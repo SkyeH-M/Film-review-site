@@ -21,12 +21,3 @@ class Watch_list(db.Model):
     def __repr__(self):
         # __repr__ to rep itself in the form of a string
         return self.list_name
-
-
-# # below is from Pretty Printed flask login
-# class LoginForm(FlaskForm):
-#     username = StringField('username', validators=[InputRequired(
-#     ), Length(min=4, max=20)])
-#     password = PasswordField('password', validators=[InputRequired(
-#     ), Length(min=5, max=80)])
-#     remember = BooleanField('remember me')

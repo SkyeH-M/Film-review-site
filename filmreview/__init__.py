@@ -9,10 +9,9 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
-# below from Pretty Printed
-bootstrap = Bootstrap(app)
+
 
 db = SQLAlchemy(app)
 
-from filmreview import routes, app  # noqa
+from filmreview import routes  # noqa
 # from filmreview import routes  # noqa
