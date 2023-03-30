@@ -1,12 +1,24 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 
 <h2 class="text-darken-4 center-align">Login</h2>
 <p>This is the login page
 </p>
 
-<!-- Bootstrap Log In form -->
 <form class="login" method="POST" action="/login">
+  <h4>Please enter your details to log in</h4>
+  <!-- form.hidden_tag() protects against attacks -->
+  {{ form.hidden_tag() }}
+  {{ wtf.form_field(form.username) }}
+  {{ wtf.form_field(form.password) }}
+  {{ wtf.form_field(form.remember) }}
+    <br>
+  <button type="submit" class="btn btn-primary">Log In</button>
+</form> 
+
+<!-- Bootstrap Log In form -->
+<!-- <form class="login" method="POST" action="/login">
     <h4>Please enter your details to log in</h4>
     <div class="mb-3 col-sm-6">
         <label for="username" class="form-label">Username</label>
@@ -18,9 +30,10 @@
     </div>
       <br>
     <button type="submit" class="btn btn-primary">Log In</button>
-  </form>
+  </form> -->
 
-<!-- <div class="row">
+<!-- Materialize Form 
+  <div class="row">
     <div class="col s12">
         <form class="login" method="POST" action="/login">
             <h3>Please Login to your account</h3>
