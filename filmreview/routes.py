@@ -30,7 +30,7 @@ class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(
         message='Invalid email'), Length(max=50)])
     username = StringField("username", validators=[InputRequired(
-    ), Length(min=4, max=15)])
+    ), Length(min=4, max=20)])
     password = PasswordField("password", validators=[InputRequired(
     ), Length(min=5, max=80)])
 
