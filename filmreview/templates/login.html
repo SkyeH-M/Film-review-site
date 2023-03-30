@@ -7,9 +7,9 @@
 </p>
 
 <!-- Bootstrap Log In form -->
-<form class="login" method="POST" action="/login">
+<form class="form-signin" method="POST" action="/login">
     <h4>Please enter your details to log in</h4>
-
+    {{ form.hidden_tag() }}
     {{ render_field(form.username) }}
     {{ render_field(form.password) }}
     {{ render_field(form.remember) }}
@@ -25,7 +25,6 @@
       <input class="form-check-input" type="checkbox" role="switch" id="rememberme">
       <label class="form-check-label" for="rememberme">Remember me</label>
     </div> -->
-      <br>
     <button type="submit" class="btn btn-primary">Log In</button>
   </form>
 

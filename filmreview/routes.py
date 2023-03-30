@@ -1,4 +1,9 @@
-from flask import render_template
+# Bugs
+# 1) FIX- registerform works to return h1 but loginform does not-
+# 1) didn't include form.hidden_tag() on login!
+
+
+from flask import render_template, request
 # installed flask-bootstrap with 'pip install flask-bootstrap'
 # from flask_bootstrap import Bootstrap
 from filmreview import app, db
@@ -28,7 +33,6 @@ class RegisterForm(FlaskForm):
     ), Length(min=4, max=15)])
     password = PasswordField("password", validators=[InputRequired(
     ), Length(min=5, max=80)])
-    remember = BooleanField("remember me")
 
 
 @app.route("/")
@@ -50,7 +54,7 @@ def add_film():
 def login():
     form = LoginForm()
     # has form been submit? if yes continue, if no render_template
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         return f"<h1> {form.username.data}, {form.password.data} </h1>"
     return render_template("login.html", form=form)
 
@@ -58,6 +62,9 @@ def login():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     form = RegisterForm()
-
-    # return f"<h1> {form.username.data}, {form.password.data} </h1>"
+    # written below as var bc of line length limit
+    usernameData = form.username.data
+    emailData = form.email.data
+    if request.method == 'POST' and form.validate_on_submit():
+        return f"<h1> {usernameData}, {emailData}, {form.password.data} </h1>"
     return render_template("signup.html", form=form)
