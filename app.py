@@ -18,7 +18,7 @@ class LoginForm(FlaskForm):
     ), Length(min=4, max=15)])
     password = PasswordField("password", validators=[InputRequired(
     ), Length(min=5, max=80)])
-    remember = BooleanField("remember")
+    remember = BooleanField("remember me")
 
 
 @app.route("/")
@@ -44,7 +44,7 @@ def login():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    return render_template("signup.html")
+    return render_template("signup.html", form=form)
 
 
 if __name__ == '__main__':
