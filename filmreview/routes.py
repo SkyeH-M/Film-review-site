@@ -62,9 +62,13 @@ def login():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     form = RegisterForm()
-    # written below as var bc of line length limit
-    usernameData = form.username.data
-    emailData = form.email.data
     if request.method == 'POST' and form.validate_on_submit():
-        return f"<h1> {usernameData}, {emailData}, {form.password.data} </h1>"
+        new_user = Users(
+            username=form.username.data, email=form.email.data,
+            password=form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        return '<h1> New user has been created </h1>'
+        # return f"<h1> {usernameData}, {emailData},
+        #  {form.password.data} </h1>"
     return render_template("signup.html", form=form)

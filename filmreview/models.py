@@ -3,7 +3,7 @@ from filmreview import db
 
 class Users(db.Model):
     """ Schema for Users model for login/signup """
-    # db is not updated, only id and username exist
+    # entire model is empty now
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
@@ -16,6 +16,7 @@ class Users(db.Model):
 
 class Watch_list(db.Model):
     """ Schema for films reviewed by user """
+    # watch list is also empty
     id = db.Column(db.Integer, primary_key=True)
     list_name = db.Column(db.String(50), unique=False, nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
