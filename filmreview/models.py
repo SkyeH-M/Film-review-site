@@ -10,13 +10,12 @@ class Users(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
 
     def __repr__(self):
-        # __repr__ to rep itself in the form of a string
+        # __repr__ to represent itself in the form of a string
         return self.username
 
 
 class Watch_list(db.Model):
-    """ Schema for films reviewed by user """
-    # watch list is also empty
+    """ Schema for films added to watchlist by user """
     id = db.Column(db.Integer, primary_key=True)
     list_name = db.Column(db.String(50), unique=False, nullable=False)
     created_by = db.Column(db.String(50), nullable=False)
@@ -24,3 +23,10 @@ class Watch_list(db.Model):
     def __repr__(self):
         # __repr__ to rep itself in the form of a string
         return self.list_name
+
+
+# class Films(db.Model):
+#     """ Schema for films searched for """
+#     name = db.Column(db.String(), primary_key=True)
+#     description = db.Column(db.String())
+#     average_rating = db.Colum(db.Integer())
