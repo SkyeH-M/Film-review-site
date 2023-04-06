@@ -1,16 +1,16 @@
 from filmreview import db
 from flask import Flask
-from flask_login import (LoginManager, UserMixin, login_user, login_required,
-                         logout_user, current_user)
+# from flask_login import (LoginManager, UserMixin, login_user, login_required,
+#                          logout_user, current_user)
 
 app = Flask(__name__)
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.login_view = 'login'
 
 
-class Users(UserMixin, db.Model):
+class Users(db.Model):
     """ Schema for Users model for login/signup """
     # entire model is empty now
     id = db.Column(db.Integer, primary_key=True)
@@ -23,9 +23,9 @@ class Users(UserMixin, db.Model):
         return self.username
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return Users.query.get(int(user_id))
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return Users.query.get(int(user_id))
 
 
 class Watch_list(db.Model):

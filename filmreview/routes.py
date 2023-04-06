@@ -15,15 +15,15 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 # is the indentation below an issue?
-from flask_login import (LoginManager, UserMixin, login_user, login_required,
-                         logout_user, current_user)
+# from flask_login import (LoginManager, UserMixin, login_user, login_required,
+#                          logout_user, current_user)
 
 # below from Pretty Printed
 bootstrap = Bootstrap4(app)
 
-login_manager = LoginManager(app)
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+# login_manager = LoginManager(app)
+# login_manager.init_app(app)
+# login_manager.login_view = 'login'
 
 
 class LoginForm(FlaskForm):
@@ -49,13 +49,13 @@ def home():
 
 
 @app.route("/search")
-@login_required
+# @login_required
 def search():
     return render_template("search.html")
 
 
 @app.route("/add_film", methods=["GET", "POST"])
-@login_required
+# @login_required
 def add_film():
     return render_template("add_film.html")
 
