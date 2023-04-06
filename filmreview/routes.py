@@ -3,7 +3,7 @@
 # 1) didn't include form.hidden_tag() on login!
 
 
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 # installed flask-bootstrap with 'pip install flask-bootstrap'
 # from flask_bootstrap import Bootstrap
 from filmreview import app, db
@@ -13,7 +13,7 @@ from flask_bootstrap import Bootstrap4
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # below from Pretty Printed
 bootstrap = Bootstrap4(app)
@@ -23,7 +23,7 @@ class LoginForm(FlaskForm):
     username = StringField("username", validators=[InputRequired(
     ), Length(min=4, max=20)])
     password = PasswordField("password", validators=[InputRequired(
-    ), Length(min=5, max=80)])
+    ), Length(min=5, max=100)])
     remember = BooleanField("remember me")
 
 
@@ -33,7 +33,7 @@ class RegisterForm(FlaskForm):
     username = StringField("username", validators=[InputRequired(
     ), Length(min=4, max=20)])
     password = PasswordField("password", validators=[InputRequired(
-    ), Length(min=5, max=80)])
+    ), Length(min=5, max=100)])
 
 
 @app.route("/")
@@ -56,7 +56,13 @@ def login():
     form = LoginForm()
     # has form been submit? if yes continue, if no render_template
     if request.method == 'POST' and form.validate_on_submit():
-        return f"<h1> {form.username.data}, {form.password.data} </h1>"
+        user = Users.query.filter_by(username=form.username.data).first()
+        if user:
+            # this works!
+            if user.password == form.password.data:
+                return redirect(url_for('home'))
+                # this also works!
+        return '<h1>Invalid username or password</h1>'
     return render_template("login.html", form=form)
 
 
@@ -64,12 +70,20 @@ def login():
 def signup():
     form = RegisterForm()
     if request.method == 'POST' and form.validate_on_submit():
+        # generate hash that is 80 char in length
+        hashed_password = generate_password_hash(
+            form.password.data, method='sha256')
+
         new_user = Users(
             username=form.username.data, email=form.email.data,
-            password=form.password.data)
+            password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         return '<h1> New user has been created </h1>'
         # return f"<h1> {usernameData}, {emailData},
         #  {form.password.data} </h1>"
     return render_template("signup.html", form=form)
+
+# delete first database record for Users as password is not yet hashed
+# Users.query.filter_by(id=1).delete()
+# db.session.commit()
