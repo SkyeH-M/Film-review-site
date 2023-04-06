@@ -14,16 +14,23 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
+# is the indentation below an issue?
+from flask_login import (LoginManager, UserMixin, login_user, login_required,
+                         logout_user, current_user)
 
 # below from Pretty Printed
 bootstrap = Bootstrap4(app)
+
+login_manager = LoginManager(app)
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 
 class LoginForm(FlaskForm):
     username = StringField("username", validators=[InputRequired(
     ), Length(min=4, max=20)])
     password = PasswordField("password", validators=[InputRequired(
-    ), Length(min=5, max=100)])
+    ), Length(min=5, max=80)])
     remember = BooleanField("remember me")
 
 
@@ -33,7 +40,7 @@ class RegisterForm(FlaskForm):
     username = StringField("username", validators=[InputRequired(
     ), Length(min=4, max=20)])
     password = PasswordField("password", validators=[InputRequired(
-    ), Length(min=5, max=100)])
+    ), Length(min=5, max=80)])
 
 
 @app.route("/")
@@ -42,11 +49,13 @@ def home():
 
 
 @app.route("/search")
+@login_required
 def search():
     return render_template("search.html")
 
 
 @app.route("/add_film", methods=["GET", "POST"])
+@login_required
 def add_film():
     return render_template("add_film.html")
 
@@ -59,7 +68,7 @@ def login():
         user = Users.query.filter_by(username=form.username.data).first()
         if user:
             # this works!
-            if user.password == form.password.data:
+            if check_password_hash(user.password, form.password.data):
                 return redirect(url_for('home'))
                 # this also works!
         return '<h1>Invalid username or password</h1>'
@@ -72,7 +81,7 @@ def signup():
     if request.method == 'POST' and form.validate_on_submit():
         # generate hash that is 80 char in length
         hashed_password = generate_password_hash(
-            form.password.data, method='sha256')
+            form.password.data, method='sha256', salt_length=8)
 
         new_user = Users(
             username=form.username.data, email=form.email.data,
