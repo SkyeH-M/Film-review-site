@@ -12,42 +12,9 @@
     {{ form.hidden_tag() }}
     {{ render_field(form.username) }}
     {{ render_field(form.password) }}
-    {{ render_field(form.remember) }}
-    <!-- <div class="mb-3 col-sm-6">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" aria-describedby="username" required>
-      </div>
-    <div class="mb-3 col-sm-6">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password">
-    </div> --> 
-    <!-- <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="rememberme">
-      <label class="form-check-label" for="rememberme">Remember me</label>
-    </div> -->
     <button type="submit" class="btn btn-primary">Log In</button>
   </form>
 
-<!-- Materialize Form 
-  <div class="row">
-    <div class="col s12">
-        <form class="login" method="POST" action="/login">
-            <h3>Please Login to your account</h3>
-            <label for="inputUsername">Username</label>
-            <input type="text" id="inputUsername" class="validate" required autofocus>
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" class="validate" required>
-            <div class="switch">
-                <label>
-                    <input type="checkbox" name="checkbox">
-                    <span class="lever"></span>
-                    Remember me
-                </label>
-            </div>
-            <br>
-            <button class="btn deep-purple darken-2">Log In</button>
-        </form>
-        </div>
-</div> -->
+
 
 {% endblock %}

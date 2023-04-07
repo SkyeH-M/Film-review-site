@@ -13,6 +13,14 @@
     <!-- My style.css link -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <title>Film Review</title>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">{% for message in messages %}
+                            <li>{{ message }}</li>
+                          {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
 </head>
 <body>
     <header>
@@ -36,6 +44,9 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
                   </li>
                 </ul>
               </div>
