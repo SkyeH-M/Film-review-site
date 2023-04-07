@@ -114,6 +114,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out', 'message')
     return redirect(url_for('home'))
 # delete first database record for Users as password is not yet hashed
 # Users.query.filter_by(id=1).delete()

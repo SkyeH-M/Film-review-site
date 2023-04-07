@@ -13,14 +13,6 @@
     <!-- My style.css link -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <title>Film Review</title>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <div class="flashes">{% for category, message in messages %}
-                            <div class="{{ category }}" id="flashMessage">{{ message }}</div>
-                          {% endfor %}
-      </div>
-      {% endif %}
-      {% endwith %}
 </head>
 <body>
     <header>
@@ -55,6 +47,15 @@
        
 
     </header>
+    <!-- Flash message appears below navbar -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flashes">{% for category, message in messages %}
+                            <div class="{{ category }}" id="flashMessage">{{ message }}</div>
+                          {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
 
     <main class="container">
         {% block content %}
