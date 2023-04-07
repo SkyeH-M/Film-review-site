@@ -70,16 +70,18 @@ def login():
     # has form been submit? if yes continue, if no render_template
     if request.method == 'POST' and form.validate_on_submit():
         user = Users.query.filter_by(username=form.username.data).first()
-        if user is None:
-            flash('Please register an account, or login to gain access')
-            return redirect(url_for('signup'))
-        if user is not None:
+        if user:
             if check_password_hash(user.password, form.password.data):
                 # signs user in, can now access loginRequired pages
                 login_user(user)
                 # this redirect will be changed to films
                 return redirect(url_for('search'))
-        return '<h1>Invalid username or password</h1>'
+            else:
+                flash('Wrong username or password, please try again', 'error')
+            return redirect(url_for('login'))
+        else:
+            flash("User doesn't exist, please Sign Up", "error")
+            return redirect(url_for('signup'))
     return render_template("login.html", form=form)
 
 
@@ -96,7 +98,10 @@ def signup():
             password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return '<h1> New user has been created </h1>'
+        if new_user:
+            flash("Thank you for registering", 'message')
+            return redirect(url_for('home'))
+
         # return f"<h1> {usernameData}, {emailData},
         #  {form.password.data} </h1>"
     return render_template("signup.html", form=form)

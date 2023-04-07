@@ -11,3 +11,12 @@ main {
 .page-footer {
   color: white;
 }
+
+#flashMessage {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
