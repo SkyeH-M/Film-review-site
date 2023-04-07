@@ -7,7 +7,9 @@ app = Flask(__name__)
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
-# login_manager.login_view = 'login'
+# below means user is redirected to login page if they try to access
+# login restricted pages
+login_manager.login_view = 'login'
 
 
 class Users(UserMixin, db.Model):

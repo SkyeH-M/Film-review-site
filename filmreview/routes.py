@@ -23,7 +23,10 @@ bootstrap = Bootstrap4(app)
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
-# login_manager.login_view = 'login'
+# below means user is redirected to login page if they try to access
+# login restricted pages
+login_manager.login_view = 'login'
+login_manager.login_message = 'Please sign up or login to view this page'
 
 
 @login_manager.user_loader
