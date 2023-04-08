@@ -17,6 +17,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # is the indentation below an issue?
 from flask_login import (LoginManager, UserMixin, login_user, login_required,
                          logout_user, current_user)
+import requests
+import json
 
 # below from Pretty Printed
 bootstrap = Bootstrap4(app)
