@@ -13,14 +13,19 @@
     </div>
 </div> -->
 
-<div class="search-wrapper">
+<form method="POST" action="{{ url_for('search') }}" class="search-wrapper">
     <label for="search">Search Films</label>
-    <input type="search" id="search">
-    <button>Search</button>
-</div>
+    {{ form.hidden_tag() }}
+    <input type="search" id="search" aria-label="Search" name="searched">
+    <button type="submit">Search</button>
+</form>
+<div class="results">
+    <p>You searched for... {{ searched }}</p>
 <div class="film-cards">
     <div class="card">
     </div>
 </div>
+</div>
+
 
 {% endblock %}

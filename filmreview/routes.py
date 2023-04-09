@@ -11,7 +11,7 @@ from filmreview.models import Watch_list, Users
 # below from Pretty Printed
 from flask_bootstrap import Bootstrap4
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 # is the indentation below an issue?
@@ -37,6 +37,11 @@ def load_user(user_id):
     return Users.query.get(int(user_id))
 
 
+class SearchForm(FlaskForm):
+    searched = StringField('Searched', validators=[InputRequired()])
+    submit = SubmitField("Submit")
+
+
 class LoginForm(FlaskForm):
     username = StringField("username", validators=[InputRequired(
     ), Length(min=4, max=20)])
@@ -58,12 +63,21 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/search")
+# pass context search.html
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
+
+
+@app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
-    # search_term = input("Search for a film: ")
-    # print("You searched for:", search_term)
-    return render_template("search.html", name=current_user.username)
+    form = SearchForm()
+    post = form.searched.data
+    # if form.validate_on_submit():
+    return render_template("search.html", form=form, searched=post)
+    # from return i removed name=current_user.username
 
 
 @app.route("/add_film", methods=["GET", "POST"])
