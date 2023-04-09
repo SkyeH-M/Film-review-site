@@ -6,7 +6,7 @@
 from flask import render_template, request, redirect, url_for, flash
 # installed flask-bootstrap with 'pip install flask-bootstrap'
 # from flask_bootstrap import Bootstrap
-from filmreview import app, db
+from filmreview import app, db, os
 from filmreview.models import Watch_list, Users
 # below from Pretty Printed
 from flask_bootstrap import Bootstrap4
@@ -29,6 +29,7 @@ login_manager.init_app(app)
 # login restricted pages
 login_manager.login_view = 'login'
 login_manager.login_message = 'Please sign up or login to view this page'
+api_key = os.environ.get("API_KEY")
 
 
 @login_manager.user_loader
@@ -121,3 +122,35 @@ def logout():
 # delete first database record for Users as password is not yet hashed
 # Users.query.filter_by(id=1).delete()
 # db.session.commit()
+
+
+"""
+Makes sense youtube API calls to MovieDb
+"""
+
+
+def load_json_for_url(url):
+    response = requests.get(url)
+    return json.loads(response.text)
+
+
+moviedb_base_url = "https://api.themoviedb.org/3"
+
+
+def load_moviedb_info(path):
+    return load_json_for_url(f"{moviedb_base_url}/search.movie?api_key={api_key}{path}")
+
+
+def get_movie_info(movie_title):  # changed movie_title to movie_id
+    return load_moviedb_info(f"&query={movie_title}")
+
+
+# def get_movie_by_title(title):
+#     return load_moviedb_info(f"")
+
+print(get_movie_info('the avengers'))
+# movie_response = requests.get(
+#         # had to split below line because of line limits
+#         f"{moviedb_base_url}/movie/{movie_id}?api_key={api_key}")
+# # f"{moviedb_base_url}/search/movie?api_key={api_key}"
+# # "&query={movie_title}")
