@@ -61,6 +61,8 @@ def home():
 @app.route("/search")
 @login_required
 def search():
+    # search_term = input("Search for a film: ")
+    # print("You searched for:", search_term)
     return render_template("search.html", name=current_user.username)
 
 
@@ -136,4 +138,4 @@ def load_moviedb_info(movie_title):
     return load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
 
 
-print(load_moviedb_info('The Avengers'))
+# print(load_moviedb_info('The Avengers'))
