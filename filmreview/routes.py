@@ -108,8 +108,6 @@ def signup():
             flash("Thank you for registering", 'message')
             return redirect(url_for('home'))
 
-        # return f"<h1> {usernameData}, {emailData},
-        #  {form.password.data} </h1>"
     return render_template("signup.html", form=form)
 
 
@@ -119,14 +117,12 @@ def logout():
     logout_user()
     flash('You have been logged out', 'message')
     return redirect(url_for('home'))
-# delete first database record for Users as password is not yet hashed
-# Users.query.filter_by(id=1).delete()
-# db.session.commit()
 
 
 """
 Makes sense youtube API calls to MovieDb
 """
+moviedb_base_url = "https://api.themoviedb.org/3"
 
 
 def load_json_for_url(url):
@@ -134,23 +130,10 @@ def load_json_for_url(url):
     return json.loads(response.text)
 
 
-moviedb_base_url = "https://api.themoviedb.org/3"
+def load_moviedb_info(movie_title):
+    movie_title = movie_title.replace(" ", "+").lower()
+    print(movie_title)
+    return load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
 
 
-def load_moviedb_info(path):
-    return load_json_for_url(f"{moviedb_base_url}/search.movie?api_key={api_key}{path}")
-
-
-def get_movie_info(movie_title):  # changed movie_title to movie_id
-    return load_moviedb_info(f"&query={movie_title}")
-
-
-# def get_movie_by_title(title):
-#     return load_moviedb_info(f"")
-
-print(get_movie_info('the avengers'))
-# movie_response = requests.get(
-#         # had to split below line because of line limits
-#         f"{moviedb_base_url}/movie/{movie_id}?api_key={api_key}")
-# # f"{moviedb_base_url}/search/movie?api_key={api_key}"
-# # "&query={movie_title}")
+print(load_moviedb_info('The Avengers'))
