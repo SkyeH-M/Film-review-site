@@ -148,8 +148,13 @@ def load_json_for_url(url):
 
 def load_moviedb_info(movie_title):
     movie_title = movie_title.replace(" ", "+").lower()
-    print(movie_title)
-    return load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
+    api_data = load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
+    print(type(api_data))  # dict
+    first_result = api_data['results'][0]
+    print(first_result['original_title']) # prints TITLE !!
+    # for data_point in api_data:
+    #     print(api_data.values())
+    # return api_data
 
 
-# print(load_moviedb_info('The Avengers'))
+print(load_moviedb_info('The Help'))
