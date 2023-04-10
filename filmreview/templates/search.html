@@ -1,31 +1,24 @@
 {% extends "base.html" %}
+{% from "bootstrap4/form.html" import render_field %}
 {% block content %}
 
 <h2 class="text-darken-4 center-align">Search</h2>
 <h3>Welcome, {{ name }}</h3>
 <p>This page is to add films to watch list, or to review films </p>
 
-<!-- <div class="row">
-    <div class="col s12 center-align">
-        <a href="{{ url_for('search') }}" class="btn-large deep-purple darken-2">
-            Search <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-    </div>
-</div> -->
-
 <form method="POST" action="{{ url_for('search') }}" class="search-wrapper">
     <label for="search">Search Films</label>
-    {{ form.hidden_tag() }}
-    <input type="search" id="search" aria-label="Search" name="searched">
+    
+    <input type="search" id="search" aria-label="Search" name="search">
     <button type="submit">Search</button>
 </form>
 <div class="results">
-    <p>You searched for... {{ image_path }}</p>
+    <img src="{{ returned_movie_image }}">
+    <!-- <p>You searched for... </p> -->
 <div class="film-cards">
     <div class="card">
     </div>
 </div>
 </div>
-
 
 {% endblock %}
