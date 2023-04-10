@@ -76,7 +76,7 @@ def search():
     form = SearchForm()
     post = form.searched.data
     # if form.validate_on_submit():
-    return render_template("search.html", form=form, searched=post)
+    return render_template("search.html", title=load_moviedb_info(form.searched.data))  # removed form=form, searched=post
     # from return i removed name=current_user.username
 
 
@@ -149,9 +149,14 @@ def load_json_for_url(url):
 def load_moviedb_info(movie_title):
     movie_title = movie_title.replace(" ", "+").lower()
     api_data = load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
-    print(type(api_data))  # dict
+    # print(type(api_data))  # dict
     first_result = api_data['results'][0]
-    print(first_result['original_title']) # prints TITLE !!
+    returned_movie_title = first_result['original_title']  # prints TITLE !!
+    returned_movie_img = first_result['poster_path']
+    returned_movie_description = first_result['overview']
+    # appended poster_path to url
+    image_path = f"https://image.tmdb.org/t/p/w500/{returned_movie_img}"
+    return f"{returned_movie_title}, {returned_movie_description}, {image_path}"
     # for data_point in api_data:
     #     print(api_data.values())
     # return api_data
