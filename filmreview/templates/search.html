@@ -6,16 +6,19 @@
 <h3>Welcome, {{ name }}</h3>
 <p>This page is to add films to watch list, or to review films </p>
 
-<form method="GET, POST" action="{{ url_for('search') }}" class="search-wrapper">
+<form method="POST" action="{{ url_for('search') }}" class="search-wrapper">
     <label for="search">Search Films</label>
     
     <input type="search" id="search" aria-label="Search" name="search">
     <button type="submit">Search</button>
 </form>
-{% for movies in movie_information %}
+<p>You searched for... {{ search_string }}</p>
+
+{% for movie in data %}
 <div class="results">
-    <img src="{{ returned_movie_image }}">
-    <p>You searched for... {{ movie_title }}</p>
+    <!-- <img src="{{ movie.original_title }}"> -->
+    <p>{{ movie.original_title }}</p>
+    <p>{{ movie.overview }}</p>
 <div class="film-cards">
     <div class="card">
     </div>

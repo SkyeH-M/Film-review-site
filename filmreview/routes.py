@@ -37,9 +37,9 @@ def load_user(user_id):
     return Users.query.get(int(user_id))
 
 
-# class SearchForm(FlaskForm):
-#     searched = StringField('Searched', validators=[InputRequired()])
-#     submit = SubmitField("Submit")
+class SearchForm(FlaskForm):
+    searched = StringField('Searched', validators=[InputRequired()])
+    submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
@@ -73,33 +73,38 @@ def home():
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
-    # form = SearchForm()
+    form = SearchForm()
     if request.method == "POST":
         moviedb_base_url = "https://api.themoviedb.org/3"
 
         def load_json_for_url(url):
+            print(url)
             response = requests.get(url)
             return json.loads(response.text)
 
-            def load_moviedb_info(movie_title):
-                movie_title = request.form.get("search")
-                movie_title = movie_title.replace(" ", "+").lower()
-                print(movie_title)
-                api_data = load_json_for_url(
-                    f"{moviedb_base_url}/search/movie?api_key={api_key}"
-                    "&query={movie_title}")
-                first_result = api_data['results'][0]
-                returned_movie_title = first_result['original_title']
-                returned_movie_img = first_result['poster_path']
-                returned_movie_description = first_result['overview']
-                # appended poster_path to url
-                image_path = f"https://image.tmdb.org/t/p/w500"
-                "/{returned_movie_img}"
-                movie_information = returned_movie_title,
-                returned_movie_description, returned_movie_img
-                return f"<h1>You searched for...</h1>"
+        def load_moviedb_info(movie_title):
+           
+            movie_title = movie_title.replace(" ", "+").lower()
+            api_data = load_json_for_url(
+                f"{moviedb_base_url}/search/movie?api_key={api_key}"
+                f"&query={movie_title}")
+            return api_data['results']
+            # if len(api_data['results']) > 0:
 
-        return render_template("search.html", form=form)
+            #     first_result = api_data['results'][0]
+            #     returned_movie_title = first_result['original_title']
+            #     returned_movie_img = first_result['poster_path']
+            #     returned_movie_description = first_result['overview']
+            #     # appended poster_path to url
+            #     image_path = f"https://image.tmdb.org/t/p/w500"
+            #     "/{returned_movie_img}"
+                # movie_information = [returned_movie_title, returned_movie_description, returned_movie_img]
+            #     return movie_information
+            # return [None, None, None]
+         
+        movie_title = request.form.get("search")
+        data = load_moviedb_info(movie_title)
+        return render_template("search.html", form=form, data=data, search_string=movie_title)
     return render_template("search.html", name=current_user.username)
 
 
