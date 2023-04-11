@@ -149,7 +149,7 @@ def signup():
         db.session.commit()
         if new_user:
             flash("Thank you for registering", 'message')
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
 
     return render_template("signup.html", form=form)
 
