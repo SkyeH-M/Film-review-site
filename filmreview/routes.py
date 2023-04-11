@@ -37,9 +37,9 @@ def load_user(user_id):
     return Users.query.get(int(user_id))
 
 
-class SearchForm(FlaskForm):
-    searched = StringField('Searched', validators=[InputRequired()])
-    submit = SubmitField("Submit")
+# class SearchForm(FlaskForm):
+#     searched = StringField('Searched', validators=[InputRequired()])
+#     submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
@@ -64,16 +64,16 @@ def home():
 
 
 # pass context search.html
-@app.context_processor
-def base():
-    form = SearchForm()
-    return dict(form=form)
+# @app.context_processor
+# def base():
+#     form = SearchForm()
+#     return dict(form=form)
 
 
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
-    form = SearchForm()
+    # form = SearchForm()
     if request.method == "POST":
         moviedb_base_url = "https://api.themoviedb.org/3"
 
@@ -99,7 +99,7 @@ def search():
                 returned_movie_description, returned_movie_img
                 return f"<h1>You searched for...</h1>"
 
-        return render_template("search.html")
+        return render_template("search.html", form=form)
     return render_template("search.html", name=current_user.username)
 
 
@@ -186,6 +186,6 @@ def logout():
 #     # appended poster_path to url
 #     image_path = f"https://image.tmdb.org/t/p/w500/{returned_movie_img}"
 #     return f"{returned_movie_title}, {returned_movie_description}, {image_path}"
-    # for data_point in api_data:
-    #     print(api_data.values())
-    # return api_data
+#     for data_point in api_data:
+#         print(api_data.values())
+#     return api_data
