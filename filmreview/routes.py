@@ -75,6 +75,12 @@ def home():
 def search():
     form = SearchForm()
     if request.method == "POST":
+        """
+        Makes sense youtube API calls to MovieDb
+        Connect to API, retrieve film title, description, and image data
+        Post returned API data to search.html film
+        """
+
         moviedb_base_url = "https://api.themoviedb.org/3"
 
         def load_json_for_url(url):
@@ -83,33 +89,26 @@ def search():
             return json.loads(response.text)
 
         def load_moviedb_info(movie_title):
-           
+
             movie_title = movie_title.replace(" ", "+").lower()
-            api_data = load_json_for_url(
+            api_written_data = load_json_for_url(
                 f"{moviedb_base_url}/search/movie?api_key={api_key}"
                 f"&query={movie_title}")
-            return api_data['results']
-            # if len(api_data['results']) > 0:
+            return api_written_data['results']
 
-            #     first_result = api_data['results'][0]
-            #     returned_movie_title = first_result['original_title']
-            #     returned_movie_img = first_result['poster_path']
-            #     returned_movie_description = first_result['overview']
-            #     # appended poster_path to url
-            #     image_path = f"https://image.tmdb.org/t/p/w500"
-            #     "/{returned_movie_img}"
-                # movie_information = [returned_movie_title, returned_movie_description, returned_movie_img]
-            #     return movie_information
-            # return [None, None, None]
-         
+        def load_moviedb_img(movie_title):
+
+            movie_title = movie_title.replace(" ", "+").lower()
+            api_img_data = load_json_for_url(f"https://image.tmdb.org/t/p/w500/{movie_title}")
+            # print this to see what I'm getting back
+            return api_img_data
+
         movie_title = request.form.get("search")
         data = load_moviedb_info(movie_title)
-        return render_template("search.html", form=form, data=data, search_string=movie_title)
+        return render_template("search.html", form=form, data=data,
+                               search_string=movie_title,
+                               name=current_user.username)
     return render_template("search.html", name=current_user.username)
-
-
-# return render_template("search.html", form=form)
-# from return I removed name=current_user.username
 
 
 @app.route("/add_film", methods=["GET", "POST"])
@@ -165,32 +164,3 @@ def logout():
     logout_user()
     flash('You have been logged out', 'message')
     return redirect(url_for('home'))
-
-    """
-    Makes sense youtube API calls to MovieDb
-    """
-
-
-# moviedb_base_url = "https://api.themoviedb.org/3"
-
-
-# def load_json_for_url(url):
-#     response = requests.get(url)
-#     return json.loads(response.text)
-
-
-# def load_moviedb_info(movie_title):
-#     movie_title = request.form.get("search")
-#     movie_title = movie_title.replace(" ", "+").lower()
-#     api_data = load_json_for_url(f"{moviedb_base_url}/search/movie?api_key={api_key}&query={movie_title}")
-#     # print(type(api_data))  # dict
-#     first_result = api_data['results'][0]
-#     returned_movie_title = first_result['original_title']  # prints TITLE !!
-#     returned_movie_img = first_result['poster_path']
-#     returned_movie_description = first_result['overview']
-#     # appended poster_path to url
-#     image_path = f"https://image.tmdb.org/t/p/w500/{returned_movie_img}"
-#     return f"{returned_movie_title}, {returned_movie_description}, {image_path}"
-#     for data_point in api_data:
-#         print(api_data.values())
-#     return api_data
