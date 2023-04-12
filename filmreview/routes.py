@@ -84,7 +84,7 @@ def search():
         moviedb_base_url = "https://api.themoviedb.org/3"
 
         def load_json_for_url(url):
-            print(url)
+            # print(url)
             response = requests.get(url)
             return json.loads(response.text)
 
@@ -94,14 +94,8 @@ def search():
             api_written_data = load_json_for_url(
                 f"{moviedb_base_url}/search/movie?api_key={api_key}"
                 f"&query={movie_title}")
+
             return api_written_data['results']
-
-        def load_moviedb_img(movie_title):
-
-            movie_title = movie_title.replace(" ", "+").lower()
-            api_img_data = load_json_for_url(f"https://image.tmdb.org/t/p/w500/{movie_title}")
-            # print this to see what I'm getting back
-            return api_img_data
 
         movie_title = request.form.get("search")
         data = load_moviedb_info(movie_title)

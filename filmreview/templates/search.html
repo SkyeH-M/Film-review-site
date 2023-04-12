@@ -16,7 +16,7 @@
 
 {% for movie in data %}
 <div class="results">
-    <img src="{{ movie.poster_path }}">
+    <img src={"https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"}>
     <p>{{ movie.original_title }}</p>
     <p>{{ movie.overview }}</p>
 <div class="film-cards">
