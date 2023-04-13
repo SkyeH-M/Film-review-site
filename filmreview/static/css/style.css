@@ -20,3 +20,19 @@ main {
 .error {
   color: red;
 }
+
+.card {
+  width: 20rem;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-btns {
+  display: inline-block;
+  margin: auto;
+}
+
+.card-link {
+  margin: auto;
+}

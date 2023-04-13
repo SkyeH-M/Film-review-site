@@ -15,13 +15,16 @@
 <p>You searched for... {{ search_string }}</p>
 
 {% for movie in data %}
-<div class="results">
-    <img src={"https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"}>
-    <p>{{ movie.original_title }}</p>
-    <p>{{ movie.overview }}</p>
-<div class="film-cards">
+<!-- <div class="results"> -->
     <div class="card">
-    </div>
+    <!-- This works, w300 is width -->
+    {% set url="https://image.tmdb.org/t/p/w300/" %} 
+    <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Movie poster image">
+    <h4 class="card-title">{{ movie.original_title }}</h4>
+    <p class="card-text">{{ movie.overview }}</p>
+    <div class="card-btns">
+    <button href="#" class="card-link">Add to watchlist</button>
+    <button href="#" class="card-link">Review</button>
 </div>
 </div>
 {% endfor %}
