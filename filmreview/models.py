@@ -34,10 +34,3 @@ class Watch_list(db.Model):
     def __repr__(self):
         # __repr__ to rep itself in the form of a string
         return self.list_name
-
-# I think using API means I don't need a Films model
-# class Films(db.Model):
-#     """ Schema for films searched for """
-#     name = db.Column(db.String(), primary_key=True)
-#     description = db.Column(db.String())
-#     average_rating = db.Colum(db.Integer())
