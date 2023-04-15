@@ -21,9 +21,14 @@ main {
   color: red;
 }
 
+.col {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .card {
-  width: 20rem;
-  margin: auto;
+  /* width: 20rem; */
+  /* margin: auto; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -35,4 +40,8 @@ main {
 
 .card-link {
   margin: auto;
+}
+
+.card-img-top {
+  object-fit: contain;
 }
