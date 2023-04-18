@@ -101,7 +101,8 @@ def search():
 @app.route("/watchlists")
 @login_required
 def watchlists():
-    return render_template("watchlists.html")
+    watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
+    return render_template("watchlists.html", watchlists=watchlists)
 
 
 @app.route("/add_watchlist", methods=["GET", "POST"])

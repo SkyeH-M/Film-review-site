@@ -1,3 +1,7 @@
+/* * {
+  overflow: hidden;
+} */
+
 body {
   display: flex;
   min-height: 100vh;
@@ -53,4 +57,12 @@ main {
 .custom-select {
   width: 90%;
   margin: auto;
+}
+
+.watchlist-card-title {
+  padding: 20px;
+}
+
+body .watchlist-card {
+  margin-top: 40px;
 }
