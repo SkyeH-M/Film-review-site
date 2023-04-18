@@ -107,6 +107,12 @@ def watchlists():
 @app.route("/add_watchlist", methods=["GET", "POST"])
 @login_required
 def add_watchlist():
+    if request.method == "POST":
+        watchlist = Watch_list(list_name=request.form.get("list_name"),
+                               created_by=request.form.get("created_by"))
+        db.session.add(watchlist)
+        db.session.commit()
+        return redirect(url_for("watchlists"))
     return render_template("add_watchlist.html")
 
 
