@@ -49,3 +49,8 @@ main {
 .accordion-button:not(.collapsed) {
   background-color: white;
 }
+
+.custom-select {
+  width: 90%;
+  margin: auto;
+}

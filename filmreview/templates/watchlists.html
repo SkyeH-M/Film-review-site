@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">My Watchlists</h3>
+<p>This page is to keep track of films you've added to your watchlists</p>
+<div class="row">
+    <div class="col-12 text-center">
+        <a href="{{ url_for('add_watchlist') }}" type="button" class="btn btn-secondary addWatchListBtn">
+            Add Watchlist
+        </a>
+    </div>
+</div>
+{% endblock %}

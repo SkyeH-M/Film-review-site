@@ -63,13 +63,6 @@ def home():
     return render_template("index.html")
 
 
-# pass context search.html
-# @app.context_processor
-# def base():
-#     form = SearchForm()
-#     return dict(form=form)
-
-
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
@@ -105,10 +98,16 @@ def search():
     return render_template("search.html", name=current_user.username)
 
 
-@app.route("/add_film", methods=["GET", "POST"])
+@app.route("/watchlists")
 @login_required
-def add_film():
-    return render_template("add_film.html")
+def watchlists():
+    return render_template("watchlists.html")
+
+
+@app.route("/add_watchlist", methods=["GET", "POST"])
+@login_required
+def add_watchlist():
+    return render_template("add_watchlist.html")
 
 
 @app.route("/login", methods=["GET", "POST"])

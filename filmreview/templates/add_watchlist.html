@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Add Watchlist</h3>
+<p>This page is for adding a new watchlist</p>
+
+<div class="row card">
+  <!-- watchlist_name -->
+    <form class="col-12" method="POST" action="{{ url_for('add_watchlist') }}">
+      <div class="form-group col-12">
+        <label for="list_name">Give your watchlist a name</label>
+        <input type="text" class="form-control" id="list_name" name="list_name" required minlength="3" maxlength="25">
+      </div>
+  <!-- Select your genre (optional) -->
+  <select class="custom-select">
+    <option selected>Choose a genre</option>
+    <option value="1">Horror</option>
+    <option value="2">Comedy</option>
+    <option value="3">Drama</option>
+    <option value="3">Romantic</option>
+    <option value="3">Sci-fi</option>
+    <option value="3">International</option>
+    <option value="3">Action</option>
+    <option value="3">Thriller</option>
+    <option value="3">Documentary</option>
+    <option value="3">Animation</option>
+    <option value="3">Musical</option>
+    <option value="3">None of the above</option>
+  </select>
+  <!-- Submit button -->
+      <div class="form-group col-12 text-center">
+        <button class="btn btn-secondary" type="submit">
+          Add Watchlist
+        </button>
+      </div>
+     </form>
+  </div>
+{% endblock %}
