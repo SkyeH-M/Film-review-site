@@ -12,26 +12,34 @@
     <input type="search" id="search" aria-label="Search" name="search">
     <button type="submit">Search</button>
 </form>
-<p>You searched for... {{ search_string }}</p>
+<!-- <p>You searched for... {{ search_string }}</p> -->
 
 <div class="container text-center">
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {% for movie in data %}
-    <div class="col mt-5">
-    <div class="card h-100">
-    <!-- This works, w300 is width -->
-    {% set url="https://image.tmdb.org/t/p/w300/" %} 
-    <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Movie poster image">
-    <h4 class="card-title">{{ movie.original_title }}</h4>
-    <p class="card-text">{{ movie.overview }}</p>
-    <div class="card-btns">
-    <button href="#" class="card-link">Add to watchlist</button>
-    <button href="#" class="card-link">Review</button>
-</div>
-</div>
-</div>
-{% endfor %}
-</div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for movie in data %}
+        <div class="col mt-5">
+            <div class="card h-100">
+        <div class="accordion accordion-flush" id="searchAccordion">
+            <div class="accordion-item">
+                {% set url="https://image.tmdb.org/t/p/w300/" %}
+                <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Movie poster image">
+                <h4 class="accordion-header card-title">{{ movie.original_title }}
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                </button>
+            </h4>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#searchAccordion">
+                <p class="card-text">{{ movie.overview }}</p>
+            </div>
+            </div>
+            </div>
+            <div class="card-btns">
+                <button href="#" class="card-link">Add to watchlist</button>
+                <button href="#" class="card-link">Review</button>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 

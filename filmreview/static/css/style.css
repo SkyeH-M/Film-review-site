@@ -27,8 +27,6 @@ main {
 }
 
 .card {
-  /* width: 20rem; */
-  /* margin: auto; */
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -36,6 +34,7 @@ main {
 .card-btns {
   display: inline-block;
   margin: auto;
+  bottom: 10px;
 }
 
 .card-link {
@@ -44,4 +43,9 @@ main {
 
 .card-img-top {
   object-fit: contain;
+}
+
+/* Remove blue default backgrond colour to collapse button */
+.accordion-button:not(.collapsed) {
+  background-color: white;
 }
