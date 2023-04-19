@@ -114,7 +114,25 @@ def add_watchlist():
         db.session.add(watchlist)
         db.session.commit()
         return redirect(url_for("watchlists"))
-    return render_template("add_watchlist.html")
+    return render_template("add_watchlist.html", data=data)
+
+
+@app.route("/populate_review", methods=["GET", "POST"])
+@login_required
+def populate_review():
+    # data = load_moviedb_info(movie_title)
+    # filmlist = list(data.query.order_by(data.movie_title).all())
+    # print(filmlist)
+    return render_template("add_film.html", data=data, filmlist=filmlist)
+
+
+@app.route("/add_film", methods=["GET", "POST"])
+@login_required
+def add_film():
+    if request.method == "POST":
+        films = list(data.query.order_by(data.movie_title).all())
+        return redirect(url_for("films"))
+    return render_template("add_film.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
