@@ -126,19 +126,6 @@ def populate_review():
                            filmlist=filmlist, list_film=list_film)
 
 
-@app.route("/add_watchlist", methods=["GET", "POST"])
-@login_required
-def add_watchlist():
-    list_film = session.get("list_film", None)
-    if request.method == "POST":
-        watchlist = Watch_list(list_name=request.form.get("list_name"),
-                               created_by=request.form.get("created_by"))
-        db.session.add(watchlist)
-        db.session.commit()
-        return redirect(url_for("watchlists"))
-    return render_template("add_watchlist.html", list_film=list_film)
-
-
 # @app.route("/add_watchlist", methods=["GET", "POST"])
 # @login_required
 # def add_watchlist():
