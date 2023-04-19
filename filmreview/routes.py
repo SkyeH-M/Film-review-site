@@ -105,18 +105,6 @@ def watchlists():
     return render_template("watchlists.html", watchlists=watchlists)
 
 
-@app.route("/add_watchlist", methods=["GET", "POST"])
-@login_required
-def add_watchlist():
-    if request.method == "POST":
-        watchlist = Watch_list(list_name=request.form.get("list_name"),
-                               created_by=request.form.get("created_by"))
-        db.session.add(watchlist)
-        db.session.commit()
-        return redirect(url_for("watchlists"))
-    return render_template("add_watchlist.html", data=data)
-
-
 @app.route("/populate_review", methods=["GET", "POST"])
 @login_required
 def populate_review():
@@ -128,18 +116,70 @@ def populate_review():
     searched_film["key"] = os.environ.get("api_key")
     film_request = requests.get("https://api.themoviedb.org/3",
                                 params=searched_film)
-    review_film = book_request.json()
+    review_film = film_request.json()
     list_film = {
         "title": review_film['results'][0]['original_title']
     }
+    session["list_film"] = list_film
     print(list_film)
-    return render_template("add_film.html",
+    return render_template("add_review.html",
                            filmlist=filmlist, list_film=list_film)
+
+
+@app.route("/add_watchlist", methods=["GET", "POST"])
+@login_required
+def add_watchlist():
+    list_film = session.get("list_film", None)
+    if request.method == "POST":
+        watchlist = Watch_list(list_name=request.form.get("list_name"),
+                               created_by=request.form.get("created_by"))
+        db.session.add(watchlist)
+        db.session.commit()
+        return redirect(url_for("watchlists"))
+    return render_template("add_watchlist.html", list_film=list_film)
+
+
+# @app.route("/add_watchlist", methods=["GET", "POST"])
+# @login_required
+# def add_watchlist():
+#     if request.method == "POST":
+#         watchlist = Watch_list(list_name=request.form.get("list_name"),
+#                                created_by=request.form.get("created_by"))
+#         db.session.add(watchlist)
+#         db.session.commit()
+#         return redirect(url_for("watchlists"))
+#     return render_template("add_watchlist.html", data=data)
+
+
+# @app.route("/populate_review", methods=["GET", "POST"])
+# @login_required
+# def populate_review():
+#     filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
+#         Watch_list.created_by == current_user.username).all())
+#     print(filmlist)
+#     searched_film_title = request.args.get("original_title")
+#     film_request = requests.get(load_json_for_url(
+#                 f"{moviedb_base_url}/search/movie?api_key={api_key}"
+#                 f"&query={movie_title}"))
+#     # searched_film = {}
+#     # searched_film["q"] = searched_film_title
+#     # searched_film["key"] = os.environ.get("api_key")
+#     # film_request = requests.get("https://api.themoviedb.org/3",
+#     #                             params=searched_film)
+#     review_film = film_request.json()
+#     list_film = {
+#         "title": review_film['results'][0]['original_title']
+#     }
+#     session["list_film"] = list_film
+#     print(list_film)
+#     return render_template("add_review.html",
+#                            filmlist=filmlist, list_film=list_film)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
 @login_required
 def add_review():
+    list_film = session.get("list_film", None)
     if request.method == "POST":
         film_review = {
             "title": request.form.get("original_title")
@@ -152,7 +192,7 @@ def add_review():
     filmlists = Watch_list.query.order_by(
         Watch_list.list_name).filter(
             Watch_list.created_by == current_user.username).all()
-    return render_template("add_review.html", filmlists=filmlists)
+    return render_template("add_review.html", filmlists=filmlists, list_film=list_film)
 
 
 @app.route("/login", methods=["GET", "POST"])
