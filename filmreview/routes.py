@@ -3,7 +3,7 @@
 # 1) didn't include form.hidden_tag() on login!
 
 
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 # installed flask-bootstrap with 'pip install flask-bootstrap'
 # from flask_bootstrap import Bootstrap
 from filmreview import app, db, os
@@ -98,6 +98,7 @@ def search():
     return render_template("search.html", name=current_user.username)
 
 
+# change name to filmlists?
 @app.route("/watchlists")
 @login_required
 def watchlists():
@@ -105,34 +106,53 @@ def watchlists():
     return render_template("watchlists.html", watchlists=watchlists)
 
 
-@app.route("/add_watchlist", methods=["GET", "POST"])
-@login_required
-def add_watchlist():
-    if request.method == "POST":
-        watchlist = Watch_list(list_name=request.form.get("list_name"),
-                               created_by=request.form.get("created_by"))
-        db.session.add(watchlist)
-        db.session.commit()
-        return redirect(url_for("watchlists"))
-    return render_template("add_watchlist.html", data=data)
+# @app.route("/add_watchlist", methods=["GET", "POST"])
+# @login_required
+# def add_watchlist():
+#     if request.method == "POST":
+#         watchlist = Watch_list(list_name=request.form.get("list_name"),
+#                                created_by=request.form.get("created_by"))
+#         db.session.add(watchlist)
+#         db.session.commit()
+#         return redirect(url_for("watchlists"))
+#     return render_template("add_watchlist.html", data=data)
 
 
 @app.route("/populate_review", methods=["GET", "POST"])
 @login_required
 def populate_review():
-    # data = load_moviedb_info(movie_title)
-    # filmlist = list(data.query.order_by(data.movie_title).all())
-    # print(filmlist)
-    return render_template("add_film.html", data=data, filmlist=filmlist)
+    filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
+        Watch_list.created_by == current_user.username).all())
+    searched_film_title = request.args.get("original_title")
+    searched_film = {}
+    searched_film["q"] = searched_film_title
+    searched_film["key"] = os.environ.get("api_key")
+    film_request = requests.get("https://api.themoviedb.org/3", params=searched_film)
+    review_film = book_request.json()
+    print(review_film)
+
+    list_film = {
+        "title": review_film['items'][0]['original_title']
+    }
+    return render_template("add_film.html", filmlist=filmlist, list_film=list_film)
 
 
-@app.route("/add_film", methods=["GET", "POST"])
+@app.route("/add_review", methods=["GET", "POST"])
 @login_required
-def add_film():
+def add_review():
     if request.method == "POST":
-        films = list(data.query.order_by(data.movie_title).all())
-        return redirect(url_for("films"))
-    return render_template("add_film.html")
+        film_review = {
+            "title": request.form.get("original_title")
+        }
+        db.session.add(film_review)
+        db.session.commit()
+        flash("Film successfully added to film list")
+        return redirect(url_for("view_films"))
+
+    filmlists = Watch_list.query.order_by(
+        Watch_list.list_name).filter(
+            Watch_list.created_by == current_user.username).all()
+    return render_template("add_review.html", filmlists=filmlists)
 
 
 @app.route("/login", methods=["GET", "POST"])
