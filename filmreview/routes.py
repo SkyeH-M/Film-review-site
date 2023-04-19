@@ -82,7 +82,6 @@ def search():
             return json.loads(response.text)
 
         def load_moviedb_info(movie_title):
-
             movie_title = movie_title.replace(" ", "+").lower()
             api_written_data = load_json_for_url(
                 f"{moviedb_base_url}/search/movie?api_key={api_key}"
@@ -106,16 +105,16 @@ def watchlists():
     return render_template("watchlists.html", watchlists=watchlists)
 
 
-# @app.route("/add_watchlist", methods=["GET", "POST"])
-# @login_required
-# def add_watchlist():
-#     if request.method == "POST":
-#         watchlist = Watch_list(list_name=request.form.get("list_name"),
-#                                created_by=request.form.get("created_by"))
-#         db.session.add(watchlist)
-#         db.session.commit()
-#         return redirect(url_for("watchlists"))
-#     return render_template("add_watchlist.html", data=data)
+@app.route("/add_watchlist", methods=["GET", "POST"])
+@login_required
+def add_watchlist():
+    if request.method == "POST":
+        watchlist = Watch_list(list_name=request.form.get("list_name"),
+                               created_by=request.form.get("created_by"))
+        db.session.add(watchlist)
+        db.session.commit()
+        return redirect(url_for("watchlists"))
+    return render_template("add_watchlist.html", data=data)
 
 
 @app.route("/populate_review", methods=["GET", "POST"])
@@ -127,14 +126,15 @@ def populate_review():
     searched_film = {}
     searched_film["q"] = searched_film_title
     searched_film["key"] = os.environ.get("api_key")
-    film_request = requests.get("https://api.themoviedb.org/3", params=searched_film)
+    film_request = requests.get("https://api.themoviedb.org/3",
+                                params=searched_film)
     review_film = book_request.json()
-    print(review_film)
-
     list_film = {
-        "title": review_film['items'][0]['original_title']
+        "title": review_film['results'][0]['original_title']
     }
-    return render_template("add_film.html", filmlist=filmlist, list_film=list_film)
+    print(list_film)
+    return render_template("add_film.html",
+                           filmlist=filmlist, list_film=list_film)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
