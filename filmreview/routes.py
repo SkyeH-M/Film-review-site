@@ -111,6 +111,7 @@ def populate_review(data):
     filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
         Watch_list.created_by == current_user.username).all())
     searched_film_title = request.args.get("original_title")
+    print(searched_film_title)
     searched_film = {}
     searched_film["q"] = searched_film_title
     searched_film["key"] = os.environ.get("api_key")
