@@ -107,7 +107,7 @@ def watchlists():
 
 @app.route("/populate_review", methods=["GET", "POST"])
 @login_required
-def populate_review():
+def populate_review(data):
     filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
         Watch_list.created_by == current_user.username).all())
     searched_film_title = request.args.get("original_title")
@@ -121,7 +121,6 @@ def populate_review():
         "title": review_film['results'][0]['original_title']
     }
     session["list_film"] = list_film
-    print(list_film)
     return render_template("add_review.html",
                            filmlist=filmlist, list_film=list_film)
 
@@ -179,7 +178,8 @@ def add_review():
     filmlists = Watch_list.query.order_by(
         Watch_list.list_name).filter(
             Watch_list.created_by == current_user.username).all()
-    return render_template("add_review.html", filmlists=filmlists, list_film=list_film)
+    return render_template("add_review.html", filmlists=filmlists,
+                           list_film=list_film)
 
 
 @app.route("/login", methods=["GET", "POST"])
