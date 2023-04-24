@@ -23,7 +23,7 @@
             <div class="accordion-item">
                 {% set url="https://image.tmdb.org/t/p/w300/" %}
                 <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Movie poster image">
-                <h4 class="accordion-header card-title">{{ movie.original_title }}
+                <h4 class="accordion-header card-title" id="card-title-id" data-value="{{ movie.original_title }}">{{ movie.original_title }}
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 </button>
             </h4>
@@ -35,7 +35,7 @@
             <div class="card-btns">
                 <!-- <button href="#" class="card-link">Add to watchlist</button> -->
                 <!-- <button href="{{ url_for('add_review') }}" class="card-link">Review</button> -->
-                <a href="{{ url_for('add_review') }}" type="button" class="btn btn-secondary addFilmBtn">
+                <a href="{{ url_for('add_review') }}" type="button" class="btn btn-secondary addFilmBtn" id="apiData">
                     Review
                 </a>
             </div>

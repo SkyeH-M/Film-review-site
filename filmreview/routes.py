@@ -42,12 +42,12 @@ class SearchForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-class ReviewForm(FlaskForm):
-    """
-    Review form for add_review.html 
-    """
-    currentFilm = StringField('Searched', validators=[InputRequired()])
-    submit = SubmitField("Submit")
+# class ReviewForm(FlaskForm):
+#     """
+#     Review form for add_review.html
+#     """
+#     currentFilm = StringField('Searched', validators=[InputRequired()])
+#     submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
@@ -118,26 +118,29 @@ def search():
 
 @app.route("/populate_review", methods=["GET", "POST"])
 @login_required
-def populate_review(data):
-    reviewForm = ReviewForm()
-    if request.method == "POST":
-        # filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
-        #     Watch_list.created_by == current_user.username).all())
-        # searched_film_title = request.args.get("original_title")
-        # print(searched_film_title)
-        # searched_film = {}
-        # searched_film["q"] = searched_film_title
-        # searched_film["key"] = os.environ.get("api_key")
-        # film_request = requests.get("https://api.themoviedb.org/3",
-        #                             params=searched_film)
-        # review_film = film_request.json()
-        # list_film = {
-        #     "title": review_film['results'][0]['original_title']
-        # }
-        data = session.get("data", None)
-        print(data)
+def populate_review():
+    film_title_value = request.form.get('film_title')
+    # this prints the value you type into the form field
+    print(film_title_value)
+    # reviewForm = ReviewForm()
+    # if request.method == "POST":
+    # filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
+    #     Watch_list.created_by == current_user.username).all())
+    # searched_film_title = request.args.get("original_title")
+    # print(searched_film_title)
+    # searched_film = {}
+    # searched_film["q"] = searched_film_title
+    # searched_film["key"] = os.environ.get("api_key")
+    # film_request = requests.get("https://api.themoviedb.org/3",
+    #                             params=searched_film)
+    # review_film = film_request.json()
+    # list_film = {
+    #     "title": review_film['results'][0]['original_title']
+    # }
+    # data = session.get("data", None)
+    # print(data)
     return render_template("add_review.html",
-                           filmlist=filmlist)
+                           film_title_value=film_title_value)
 
 
 # @app.route("/add_watchlist", methods=["GET", "POST"])
