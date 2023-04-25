@@ -129,6 +129,18 @@ def add_watchlist():
     return render_template("add_watchlist.html")
 
 
+@app.route("/edit_watchlist/<int:watchlist_id>", methods=["GET", "POST"])
+@login_required
+def edit_watchlist(watchlist_id):
+    watchlist = Watch_list.query.get_or_404(watchlist_id)
+    if request.method == 'POST':
+        watchlist.list_name = request.form.get("list_name")
+        watchlist.created_by = request.form.get("created_by")
+        watchlist.genre = request.form.get("genre")
+        db.session.commit()
+        return redirect(url_for("watchlists"))
+    return render_template("edit_watchlist.html", watchlist=watchlist)
+
 # for add_review get data the same way as with the add_watchlist route above
 
 # @app.route("/add_review", methods=["GET", "POST"])
