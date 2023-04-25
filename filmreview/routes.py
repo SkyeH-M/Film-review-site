@@ -6,7 +6,7 @@
 from flask import render_template, request, redirect, url_for, flash, session
 # installed flask-bootstrap with 'pip install flask-bootstrap'
 from filmreview import app, db, os
-from filmreview.models import Watch_list, Users
+from filmreview.models import Watch_list, Users, Film
 # below from Pretty Printed
 from flask_bootstrap import Bootstrap4
 from flask_wtf import FlaskForm
