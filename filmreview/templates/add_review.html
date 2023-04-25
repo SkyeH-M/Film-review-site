@@ -1,30 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="text-center">Review A Film</h3>
-<p>This page is to add review to films, and for this to be posted to films.html</p>
-<p>Form fields marked with a <span class="required">*</span> symbol are required, so please fill them in</p>
-
     <div class="row card">
-        <!-- Changed url_for from 'add_review' to 'submit'-->
-        <form class="col-12 review-form" method="POST" action="{{ url_for('populate_review') }}">
-            <!-- for movie in data here -->
+        <form class="col-12 review-form" method="POST" action="{{ url_for('add_review') }}">
             <div class="form-group col-12">
-                <span id="reviewPosterImg"> <!-- {% set url="https://image.tmdb.org/t/p/w300/" %} -->
-                    <img class="card-img-top" alt="Movie poster image">
+                <h3 class="text-center">Review A Film</h3>
+                <span id="reviewPosterImg">
+                    <img src="{{ url_for('static', filename='images/review-img.jpg')}}" class="card-img-top col-7 mx-auto d-block" alt="Movie poster image">
                 </span>
             </div>
             <div class="form-group col-12">
+                <p>Form fields marked with a <span class="required">*</span> symbol are required, so please fill them in</p>
                 <label for="list_name">Title<span class="required">*</span></label>
-                <!-- removed value={{ "data.title" }}-->
                 <input type="text" class="form-control" id="film_title" name="film_title" required minlength="3"
                     maxlength="25">
             </div>
-            <!-- <div class="form-group col-12">
-                <label for="created_by">Enter your name<span class="required">*</span></label>
-                <input type="text" class="form-control" id="created_by" name="created_by" placeholder="Username" required minlength="3"
-                    maxlength="25">
-            </div> -->
             <div class="form-group col-12">
                 <label for="starReview">How do you rate this film?<span class="required">*</span></label>
                 <!-- https://bbbootstrap.com/snippets/bootstrap-rate-your-experience-template-star-ratings-30972576 -->
@@ -46,11 +36,7 @@
                     Submit Review
                 </button>
             </div>
-            <!-- endfor here -->
         </form>
     </div>
     </div>
-    
-<!-- clicking review on search page takes us to this page with form for reviewing
-when submit is clicked the film data and review info should be posted to films.html -->
 {% endblock %}

@@ -5,7 +5,6 @@
 
 from flask import render_template, request, redirect, url_for, flash, session
 # installed flask-bootstrap with 'pip install flask-bootstrap'
-# from flask_bootstrap import Bootstrap
 from filmreview import app, db, os
 from filmreview.models import Watch_list, Users
 # below from Pretty Printed
@@ -14,7 +13,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
-# is the indentation below an issue?
 from flask_login import (LoginManager, UserMixin, login_user, login_required,
                          logout_user, current_user)
 import requests
@@ -40,14 +38,6 @@ def load_user(user_id):
 class SearchForm(FlaskForm):
     searched = StringField('Searched', validators=[InputRequired()])
     submit = SubmitField("Submit")
-
-
-# class ReviewForm(FlaskForm):
-#     """
-#     Review form for add_review.html
-#     """
-#     currentFilm = StringField('Searched', validators=[InputRequired()])
-#     submit = SubmitField("Submit")
 
 
 class LoginForm(FlaskForm):
@@ -85,7 +75,6 @@ def search():
         moviedb_base_url = "https://api.themoviedb.org/3"
 
         def load_json_for_url(url):
-            # print(url)
             response = requests.get(url)
             return json.loads(response.text)
 
@@ -109,11 +98,11 @@ def search():
 
 
 # change name to filmlists?
-# @app.route("/watchlists")
-# @login_required
-# def watchlists():
-#     watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
-#     return render_template("watchlists.html", watchlists=watchlists)
+@app.route("/watchlists")
+@login_required
+def watchlists():
+    watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
+    return render_template("watchlists.html", watchlists=watchlists)
 
 
 @app.route("/populate_review", methods=["GET", "POST"])
@@ -122,62 +111,20 @@ def populate_review():
     film_title_value = request.form.get('film_title')
     # this prints the value you type into the form field
     print(film_title_value)
-    # reviewForm = ReviewForm()
-    # if request.method == "POST":
-    # filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
-    #     Watch_list.created_by == current_user.username).all())
-    # searched_film_title = request.args.get("original_title")
-    # print(searched_film_title)
-    # searched_film = {}
-    # searched_film["q"] = searched_film_title
-    # searched_film["key"] = os.environ.get("api_key")
-    # film_request = requests.get("https://api.themoviedb.org/3",
-    #                             params=searched_film)
-    # review_film = film_request.json()
-    # list_film = {
-    #     "title": review_film['results'][0]['original_title']
-    # }
-    # data = session.get("data", None)
-    # print(data)
     return render_template("add_review.html",
                            film_title_value=film_title_value)
 
 
-# @app.route("/add_watchlist", methods=["GET", "POST"])
-# @login_required
-# def add_watchlist():
-#     if request.method == "POST":
-#         watchlist = Watch_list(list_name=request.form.get("list_name"),
-#                                created_by=request.form.get("created_by"))
-#         db.session.add(watchlist)
-#         db.session.commit()
-#         return redirect(url_for("watchlists"))
-#     return render_template("add_watchlist.html", data=data)
-
-
-# @app.route("/populate_review", methods=["GET", "POST"])
-# @login_required
-# def populate_review():
-#     filmlist = list(Watch_list.query.order_by(Watch_list.movie_title).filter(
-#         Watch_list.created_by == current_user.username).all())
-#     print(filmlist)
-#     searched_film_title = request.args.get("original_title")
-#     film_request = requests.get(load_json_for_url(
-#                 f"{moviedb_base_url}/search/movie?api_key={api_key}"
-#                 f"&query={movie_title}"))
-#     # searched_film = {}
-#     # searched_film["q"] = searched_film_title
-#     # searched_film["key"] = os.environ.get("api_key")
-#     # film_request = requests.get("https://api.themoviedb.org/3",
-#     #                             params=searched_film)
-#     review_film = film_request.json()
-#     list_film = {
-#         "title": review_film['results'][0]['original_title']
-#     }
-#     session["list_film"] = list_film
-#     print(list_film)
-#     return render_template("add_review.html",
-#                            filmlist=filmlist, list_film=list_film)
+@app.route("/add_watchlist", methods=["GET", "POST"])
+@login_required
+def add_watchlist():
+    if request.method == "POST":
+        watchlist = Watch_list(list_name=request.form.get("list_name"),
+                               created_by=request.form.get("created_by"))
+        db.session.add(watchlist)
+        db.session.commit()
+        return redirect(url_for("watchlists"))
+    return render_template("add_watchlist.html", data=data)
 
 
 @app.route("/add_review", methods=["GET", "POST"])
