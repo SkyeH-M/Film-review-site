@@ -1,4 +1,4 @@
-<!-- {% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 
 <h3 class="center-align">My Watchlists</h3>
@@ -15,11 +15,12 @@
 <div class="card watchlist-card text-center">
     <div class="card-body">
       <h5 class="card-title watchlist-card-title">{{ watchlist.list_name }}</h5>
-      <h6 class="card-text watchlist-genre">{{ watchlist.created_by }}</h6>
+      <h6 class="card-text watchlist-created-by">Username: {{ watchlist.created_by }}</h6>
+      <h6 class="card-text watchlist-genre">Genre: {{ watchlist.genre }}</h6>
         <a href="#" class="btn btn-secondary">Edit</a>
         <a href="#" class="btn btn-secondary">Delete</a>
     </div>
   </div>
   {% endfor %}
 </div>
-{% endblock %} -->
+{% endblock %}

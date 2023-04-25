@@ -1,6 +1,7 @@
 # Bugs
 # 1) FIX- registerform works to return h1 but loginform does not-
 # 1) didn't include form.hidden_tag() on login!
+# How to get Bootstrap custom select via models.py for genre?
 
 
 from flask import render_template, request, redirect, url_for, flash, session
@@ -105,14 +106,14 @@ def watchlists():
     return render_template("watchlists.html", watchlists=watchlists)
 
 
-@app.route("/populate_review", methods=["GET", "POST"])
-@login_required
-def populate_review():
-    film_title_value = request.form.get('film_title')
-    # this prints the value you type into the form field
-    print(film_title_value)
-    return render_template("add_review.html",
-                           film_title_value=film_title_value)
+# @app.route("/populate_review", methods=["GET", "POST"])
+# @login_required
+# def populate_review():
+#     film_title_value = request.form.get('film_title')
+#     # this prints the value you type into the form field
+#     print(film_title_value)
+#     return render_template("add_review.html",
+#                            film_title_value=film_title_value)
 
 
 @app.route("/add_watchlist", methods=["GET", "POST"])
@@ -120,27 +121,30 @@ def populate_review():
 def add_watchlist():
     if request.method == "POST":
         watchlist = Watch_list(list_name=request.form.get("list_name"),
-                               created_by=request.form.get("created_by"))
+                               created_by=request.form.get("created_by"),
+                               genre=request.form.get("genre"))
         db.session.add(watchlist)
         db.session.commit()
         return redirect(url_for("watchlists"))
-    return render_template("add_watchlist.html", data=data)
+    return render_template("add_watchlist.html")
 
 
-@app.route("/add_review", methods=["GET", "POST"])
-@login_required
-def add_review():
-    data = session.get("data", None)
-    if request.method == "POST":
-        film_review = {
-            "title": request.form.get("original_title")
-        }
-        db.session.add(film_review)
-        db.session.commit()
-        flash("Film successfully added to film list")
-        return redirect(url_for("view_films"))
+# for add_review get data the same way as with the add_watchlist route above
 
-    return render_template("add_review.html", data=data)
+# @app.route("/add_review", methods=["GET", "POST"])
+# @login_required
+# def add_review():
+#     data = session.get("data", None)
+#     if request.method == "POST":
+#         film_review = {
+#             "title": request.form.get("original_title")
+#         }
+#         db.session.add(film_review)
+#         db.session.commit()
+#         flash("Film successfully added to film list")
+#         return redirect(url_for("view_films"))
+
+#     return render_template("add_review.html", data=data)
 
 
 @app.route("/login", methods=["GET", "POST"])

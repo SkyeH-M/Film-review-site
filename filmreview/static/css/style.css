@@ -54,10 +54,10 @@ main {
   background-color: white;
 }
 
-.custom-select {
-  width: 90%;
+/* .custom-select {
+  width: 100%;
   margin: auto;
-}
+} */
 
 .watchlist-card-title {
   padding: 20px;
@@ -120,4 +120,11 @@ body {
   font-size: 2rem;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+
+/* Add margin to Bootstrap columns - Seb33300 */
+[class*="row-cols-"] {
+  background-clip: padding-box;
+  border: 10px solid transparent;
 }

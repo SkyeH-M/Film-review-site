@@ -30,6 +30,7 @@ class Watch_list(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     list_name = db.Column(db.String(50), unique=False, nullable=False)
     created_by = db.Column(db.String(50), nullable=True)
+    genre = db.Column(db.String(20), nullable=True)
     # ref one to many relationship, not visible in database
     films = db.relationship("Film", backref="watch_list",
                             cascade="all, delete", lazy=True)
