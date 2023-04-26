@@ -174,23 +174,23 @@ def add_film():
 @app.route("/films")
 @login_required
 def films():
-    return render_template("films.html")
-# for add_review get data the same way as with the add_watchlist route above
+    films = list(Film.query.order_by(Film.id).all())
+    return render_template("films.html", films=films)
 
-# @app.route("/add_review", methods=["GET", "POST"])
-# @login_required
-# def add_review():
-#     data = session.get("data", None)
-#     if request.method == "POST":
-#         film_review = {
-#             "title": request.form.get("original_title")
-#         }
-#         db.session.add(film_review)
-#         db.session.commit()
-#         flash("Film successfully added to film list")
-#         return redirect(url_for("view_films"))
 
-#     return render_template("add_review.html", data=data)
+@app.route("/edit_film/<int:film_id>", methods=["GET", "POST"])
+@login_required
+def edit_film(film_id):
+    film = Film.query.get_or_404(film_id)
+    watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
+    if request.method == "POST":
+        film.id = request.form.get("id")
+        film.film_title = request.form.get("film_title")
+        film.star_rating = request.form.get("rating")
+        film.written_review = request.form.get("writtenReview")
+        film.watchlist_id = request.form.get("watchlist_id")
+        db.session.commit()
+    return render_template("edit_film.html", film=film, watchlists=watchlists)
 
 
 @app.route("/login", methods=["GET", "POST"])
