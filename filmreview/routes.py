@@ -141,6 +141,40 @@ def edit_watchlist(watchlist_id):
         return redirect(url_for("watchlists"))
     return render_template("edit_watchlist.html", watchlist=watchlist)
 
+
+@app.route("/delete_watchlist/<int:watchlist_id>")
+@login_required
+def delete_watchlist(watchlist_id):
+    watchlist = Watch_list.query.get_or_404(watchlist_id)
+    db.session.delete(watchlist)
+    db.session.commit()
+    return redirect(url_for("watchlists"))
+
+
+# should add film be add review, not have a future watchlist at all, but just
+# a place to review films you've seen?
+@app.route("/add_film", methods=["GET", "POST"])
+@login_required
+def add_film():
+    watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
+    if request.method == "POST":
+        film = Film(
+            id=request.form.get("id"),
+            film_title=request.form.get("film_title"),
+            star_rating=request.form.get("rating"),
+            written_review=request.form.get("writtenReview"),
+            watchlist_id=request.form.get("watchlist_id")
+        )
+        db.session.add(film)
+        db.session.commit()
+        return redirect(url_for("films"))
+    return render_template("add_film.html", watchlists=watchlists)
+
+
+@app.route("/films")
+@login_required
+def films():
+    return render_template("films.html")
 # for add_review get data the same way as with the add_watchlist route above
 
 # @app.route("/add_review", methods=["GET", "POST"])

@@ -4,3 +4,9 @@
 //         document.getElementById("film_title").value = apiData;
 //     });
 // })
+
+// function to show and hide modals when appropriate
+document.addEventListener("DOMContentLoaded", function() {
+    let modals = document.querySelectorAll(".modal");
+    M.Modal.init(modals);
+});
