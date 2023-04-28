@@ -28,6 +28,7 @@
                 </button>
             </h4>
             <div id="search-{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="search-{{ loop.index }}" data-bs-parent="#searchAccordion">
+                <p>Release Date: {{ movie.release_date }}</p>
                 <p class="card-text">{{ movie.overview }}</p>
             </div>
             </div>

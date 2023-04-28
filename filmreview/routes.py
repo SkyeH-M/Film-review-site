@@ -130,7 +130,8 @@ def edit_watchlist(watchlist_id):
         flash("You cannot edit another user's list")
         return redirect(url_for('watchlists'))
 
-    if request.method == 'POST' and current_user.username == watchlist.created_by:
+    if (request.method == 'POST' and current_user.username
+            == watchlist.created_by):
         watchlist.list_name = request.form.get("list_name")
         watchlist.created_by = current_user.username
         watchlist.genre = request.form.get("genre")
@@ -159,8 +160,8 @@ def delete_watchlist(watchlist_id):
 @login_required
 def add_film():
     watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
-    if request.method == "POST":
-        try:
+    try:
+        if request.method == "POST" and len(watchlists) != 0:
             film = Film(
                 id=request.form.get("id"),
                 reviewed_by=current_user.username,
@@ -169,12 +170,15 @@ def add_film():
                 written_review=request.form.get("writtenReview"),
                 watchlist_id=request.form.get("watchlist_id")
             )
-        except Exception as e:
-            e = film.watchlist_id is None
-            flash("Please create a Film List before adding reviews")
-        db.session.add(film)
-        db.session.commit()
-        return redirect(url_for("films"))
+            db.session.add(film)
+            db.session.commit()
+            return redirect(url_for("films"))
+
+    # if film list doesn't already exist
+    except Exception:
+        flash("Please create a Film List before adding reviews")
+        return redirect(url_for('add_watchlist'))
+
     return render_template("add_film.html", watchlists=watchlists)
 
 

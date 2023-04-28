@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<p>Welcome to your film review site!</p>
+<h1 class="text-center">Welcome to your film review site!</h1>
+<span id="indexPosterImg">
+    <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-9 mx-auto d-block" alt="Index poster image">
+</span>
+<p class="text-center">Please create a Film List to begin reviewing</p>
+<a href="{{ url_for('add_watchlist') }}" type="button" class="btn text-center" id="createFirstList">Create your first list</a>
+
+
 {% endblock %}

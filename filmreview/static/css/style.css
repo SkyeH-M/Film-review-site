@@ -56,11 +56,6 @@ main {
   background-color: white;
 }
 
-/* .custom-select {
-  width: 100%;
-  margin: auto;
-} */
-
 .watchlist-card-title {
   padding: 20px;
 }
@@ -136,4 +131,21 @@ body {
   margin-bottom: 20px;
   background: rgb(166, 124, 225);
   border-style: solid;
+}
+
+#createFirstList {
+  margin: auto;
+  display: block;
+  background-color: white;
+  width: 60%;
+}
+
+.film-form-card {
+  margin: auto;
+  margin-top: 20px;
+}
+
+.add-watchlist-card {
+  margin: auto;
+  margin-top: 20px;
 }
