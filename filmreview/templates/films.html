@@ -15,7 +15,9 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   <!-- sort and reverse functionality from Jinja Docs -->
   {% for film in films|sort(attribute="star_rating", reverse=true) %}
-      <div class="accordion accordion-flush" id="accordion-{{ loop.index }}"> <!--removed id="reviewAccordion"-->
+  <!-- only display reviews from current user -->
+  {% if film.reviewed_by == current_user.username %}
+      <div class="accordion accordion-flush" id="accordion-{{ loop.index }}">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -49,6 +51,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% endfor %}
 </div>
 {% endblock %}

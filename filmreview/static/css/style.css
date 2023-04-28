@@ -14,10 +14,11 @@ main {
 
 .page-footer {
   color: white;
+  margin-top: 20px;
 }
 
 #flashMessage {
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -31,8 +32,8 @@ main {
 }
 
 .card {
-  margin-top: 20px;
   margin-bottom: 20px;
+  width: 90%;
 }
 
 .card-btns {
@@ -47,6 +48,7 @@ main {
 
 .card-img-top {
   object-fit: contain;
+  width: 100%;
 }
 
 /* Remove blue default background colour to collapse button */
@@ -67,7 +69,7 @@ body .watchlist-card {
   margin-top: 40px;
 }
 
-.required {
+.requiredField {
   color: red;
 }
 
@@ -127,4 +129,11 @@ body {
 [class*="row-cols-"] {
   background-clip: padding-box;
   border: 10px solid transparent;
+}
+
+.flashes {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgb(166, 124, 225);
+  border-style: solid;
 }

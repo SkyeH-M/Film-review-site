@@ -91,14 +91,17 @@ def search():
 
         data = load_moviedb_info(movie_title)
         session["data"] = data
-
-        return render_template("search.html", form=form, data=data,
-                               search_string=movie_title,
-                               name=current_user.username)
+        # if film doesn't exist in api database...
+        if len(data) == 0:
+            flash(f"Unfortunately we can't find a film with"
+                  f" the title, '{movie_title}' please choose another")
+        else:
+            return render_template("search.html", form=form, data=data,
+                                   search_string=movie_title,
+                                   name=current_user.username)
     return render_template("search.html", name=current_user.username)
 
 
-# change name to filmlists?
 @app.route("/watchlists")
 @login_required
 def watchlists():
@@ -106,22 +109,12 @@ def watchlists():
     return render_template("watchlists.html", watchlists=watchlists)
 
 
-# @app.route("/populate_review", methods=["GET", "POST"])
-# @login_required
-# def populate_review():
-#     film_title_value = request.form.get('film_title')
-#     # this prints the value you type into the form field
-#     print(film_title_value)
-#     return render_template("add_review.html",
-#                            film_title_value=film_title_value)
-
-
 @app.route("/add_watchlist", methods=["GET", "POST"])
 @login_required
 def add_watchlist():
     if request.method == "POST":
         watchlist = Watch_list(list_name=request.form.get("list_name"),
-                               created_by=request.form.get("created_by"),
+                               created_by=current_user.username,
                                genre=request.form.get("genre"))
         db.session.add(watchlist)
         db.session.commit()
@@ -133,11 +126,16 @@ def add_watchlist():
 @login_required
 def edit_watchlist(watchlist_id):
     watchlist = Watch_list.query.get_or_404(watchlist_id)
-    if request.method == 'POST':
+    if current_user.username != watchlist.created_by:
+        flash("You cannot edit another user's list")
+        return redirect(url_for('watchlists'))
+
+    if request.method == 'POST' and current_user.username == watchlist.created_by:
         watchlist.list_name = request.form.get("list_name")
-        watchlist.created_by = request.form.get("created_by")
+        watchlist.created_by = current_user.username
         watchlist.genre = request.form.get("genre")
         db.session.commit()
+        flash("Your film list was edited successfully")
         return redirect(url_for("watchlists"))
     return render_template("edit_watchlist.html", watchlist=watchlist)
 
@@ -146,25 +144,34 @@ def edit_watchlist(watchlist_id):
 @login_required
 def delete_watchlist(watchlist_id):
     watchlist = Watch_list.query.get_or_404(watchlist_id)
-    db.session.delete(watchlist)
-    db.session.commit()
+    if current_user.username != watchlist.created_by:
+        flash("You cannot delete another user's list")
+        return redirect(url_for('watchlists'))
+
+    if current_user.username == watchlist.created_by:
+        db.session.delete(watchlist)
+        db.session.commit()
+        flash("Your film list has been deleted")
     return redirect(url_for("watchlists"))
 
 
-# should add film be add review, not have a future watchlist at all, but just
-# a place to review films you've seen?
 @app.route("/add_film", methods=["GET", "POST"])
 @login_required
 def add_film():
     watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
     if request.method == "POST":
-        film = Film(
-            id=request.form.get("id"),
-            film_title=request.form.get("film_title"),
-            star_rating=request.form.get("rating"),
-            written_review=request.form.get("writtenReview"),
-            watchlist_id=request.form.get("watchlist_id")
-        )
+        try:
+            film = Film(
+                id=request.form.get("id"),
+                reviewed_by=current_user.username,
+                film_title=request.form.get("film_title"),
+                star_rating=request.form.get("rating"),
+                written_review=request.form.get("writtenReview"),
+                watchlist_id=request.form.get("watchlist_id")
+            )
+        except Exception as e:
+            e = film.watchlist_id is None
+            flash("Please create a Film List before adding reviews")
         db.session.add(film)
         db.session.commit()
         return redirect(url_for("films"))
@@ -204,13 +211,13 @@ def login():
                 # signs user in, can now access loginRequired pages
                 login_user(user)
                 # this redirect will be changed to films
-                return redirect(url_for('search'))
-            else:
-                flash('Wrong username or password, please try again', 'error')
-            return redirect(url_for('login'))
+                return redirect(url_for('films'))
         else:
-            flash("User doesn't exist, please Sign Up", "error")
-            return redirect(url_for('signup'))
+            flash('Wrong username or password, please try again')
+            return redirect(url_for('login'))
+        # else:
+        #     flash("User doesn't exist, please Sign Up")
+        #     return redirect(url_for('signup'))
     return render_template("login.html", form=form)
 
 
@@ -219,9 +226,21 @@ def signup():
     form = RegisterForm()
     if request.method == 'POST' and form.validate_on_submit():
         # generate hash that is 80 char in length
+        existing_username = Users.query.filter(Users.username == request.form
+                                               .get("username").lower()).all()
+        if existing_username:
+            flash("This username has already been taken,"
+                  "please choose another")
+            return redirect(url_for('signup'))
+
+        existing_email = Users.query.filter(Users.email == request.form
+                                            .get("email").lower()).all()
+        if existing_email:
+            flash("This email already exists, please log in to your account")
+            return redirect(url_for("login"))
+
         hashed_password = generate_password_hash(
             form.password.data, method='sha256', salt_length=8)
-
         new_user = Users(
             username=form.username.data, email=form.email.data,
             password=hashed_password)

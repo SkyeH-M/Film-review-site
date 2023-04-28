@@ -43,6 +43,8 @@ class Watch_list(db.Model):
 class Film(db.Model):
     """ Schema for films added to watchlist, or a review added """
     id = db.Column(db.Integer, primary_key=True)
+    reviewed_by = db.Column(db.String(50), db.ForeignKey("users.username"),
+                            nullable=False)
     film_title = db.Column(db.String(50), unique=False, nullable=False)
     star_rating = db.Column(db.Integer, unique=False, nullable=False)
     written_review = db.Column(db.String(200), unique=False, nullable=True)

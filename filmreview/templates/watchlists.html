@@ -11,7 +11,8 @@
     </div>
 </div>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {% for watchlist in watchlists %}
+    {% for watchlist in watchlists|sort(attribute='created_by', reverse=true) %}
+    {% if watchlist.created_by == current_user.username %}
 <div class="card watchlist-card text-center">
     <div class="card-body">
       <h5 class="card-title watchlist-card-title">{{ watchlist.list_name }}</h5>
@@ -42,6 +43,7 @@
           </div>
     </div>
   </div>
+  {% endif %}
   {% endfor %}
 </div>
 {% endblock %}

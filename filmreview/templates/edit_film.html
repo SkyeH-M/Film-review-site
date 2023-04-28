@@ -11,15 +11,15 @@
           </span>
       </div>
       <div class="form-group col-12">
-          <p>Form fields marked with a <span class="required">*</span> symbol are required, so please fill them in</p>
+          <p>Form fields marked with a <span class="requiredField">*</span> symbol are required, so please fill them in</p>
           <!-- Film title -->
-          <label for="film_title">Title<span class="required">*</span></label>
+          <label for="film_title">Title<span class="requiredField">*</span></label>
           <input type="text" class="form-control" id="film_title" name="film_title" value="{{ film.film_title }}" required minlength="3"
               maxlength="25">
       </div>
       <div class="form-group col-12">
         <!-- Star Rating -->
-          <label for="starRating">How do you rate this film?<span class="required">*</span></label>
+          <label for="starRating">How do you rate this film?<span class="requiredField">*</span></label>
           <!-- https://bbbootstrap.com/snippets/bootstrap-rate-your-experience-template-star-ratings-30972576 -->
           <div class="col mb-3 rating" >
               <input type="radio" {% if film.star_rating == '5' %} checked="checked" {% endif %} name="rating" value="5" id="5"><label for="5">☆</label> 
@@ -37,7 +37,7 @@
       </div>
       <!-- watchlist_id -->
       <div class="form-group col-12">
-        <label for="watchlist_id">Which watchlist should this go into?<span class="required">*</span></label>
+        <label for="watchlist_id">Which watchlist should this go into?<span class="requiredField">*</span></label>
         <select class="form-select" id="watchlist_id" name="watchlist_id" aria-label="Select which watchlist to append to" required>
           <option selected>Choose your Film List</option>
           {% for watchlist in watchlists %}
