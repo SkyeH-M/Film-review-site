@@ -2,12 +2,12 @@
 {% block content %}
 
 <h3 class="text-center">My Reviews</h3>
-<p>This page is to keep track of films you've reviewed or rated</p>
+<p>This page is to keep track of movies you've reviewed or rated</p>
 
 <div class="row">
   <div class="col-12 text-center">
     <a href="{{ url_for('add_film') }}" type="button" class="btn btn-secondary addFilmBtn">
-      Add Film Review
+      Add Movie Review
     </a>
   </div>
 </div>
@@ -46,8 +46,28 @@
             <div class="accordion-footer text-center">
               <p>
                 <a href="{{ url_for('edit_film', film_id=film.id) }}" class="btn btn-secondary mb-3">Edit</a>
-                <a href="{{ url_for('delete_film', film_id=film.id) }}" class="btn btn-secondary mb-3">Delete</a>
+                <a href="#modal--{{ film.id }}" class="btn btn-secondary modal-trigger mb-3" type="button" data-toggle="modal" data-target="#deleteFilmModal">Delete</a>
               </p>
+            </div>
+            <!-- Modal to delete Film -->
+            <div class="modal fade" id="deleteFilmModal" tabindex="-1" role="dialog" aria-labelledby="deleteFilmModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteFilmModalLabel">Are you sure you want to delete this movie review?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>This action cannot be undone</p>
+                  </div>
+                  <div class="modal-footer">
+                      <a href="#!" class="modal-close btn btn-secondary" type="button" data-dismiss="modal">Cancel</a>                  
+                      <a href="{{ url_for('delete_film', film_id=film.id )}}" class="deleteBtn btn btn-danger" type="button">Delete</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

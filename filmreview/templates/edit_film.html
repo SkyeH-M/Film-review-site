@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>Edit Film Review</h3>
+<h3>Edit Movie Review</h3>
 <div class="row card film-form-card">
   <form class="col-12 film-form" method="POST" action="{{ url_for('edit_film', film_id=film.id) }}">
       <div class="form-group col-12">
-          <h3 class="text-center">Review A Film</h3>
+          <h3 class="text-center">Review A Movie</h3>
           <span id="filmPosterImg">
               <img src="{{ url_for('static', filename='images/review-img.jpg')}}" class="card-img-top col-7 mx-auto d-block" alt="Movie poster image">
           </span>
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group col-12">
         <!-- Star Rating -->
-          <label for="starRating">How do you rate this film?<span class="requiredField">*</span></label>
+          <label for="starRating">How do you rate this movie?<span class="requiredField">*</span></label>
           <!-- https://bbbootstrap.com/snippets/bootstrap-rate-your-experience-template-star-ratings-30972576 -->
           <div class="col mb-3 rating" >
             <!-- cannot pre-populate star rating -->
@@ -40,7 +40,7 @@
       <div class="form-group col-12">
         <label for="watchlist_id">Which watchlist should this go into?<span class="requiredField">*</span></label>
         <select class="form-select" id="watchlist_id" name="watchlist_id" aria-label="Select which watchlist to append to" required>
-          <option selected>Choose your Film List</option>
+          <option selected>Choose your Movie List</option>
           {% for watchlist in watchlists %}
               <option value="{{ watchlist.id}}">{{ watchlist.list_name}}</option>
           {% endfor %}

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="center-align">My Film Lists</h3>
+<h3 class="center-align">My Movie Lists</h3>
 <p>This page is to keep track of films you've watched</p>
 <div class="row">
     <div class="col-12 text-center">
         <a href="{{ url_for('add_watchlist') }}" type="button" class="btn btn-secondary addWatchListBtn">
-            Add Film List
+            Add Movie List
         </a>
     </div>
 </div>
@@ -25,13 +25,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="deleteWatchlistModalLabel">Are you sure you want to delete this watchlist?</h5>
+                  <h5 class="modal-title" id="deleteWatchlistModalLabel">Are you sure you want to delete this movie list?</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                    <p>Warning: This will delete all related films</p>
+                    <p>Warning: This will delete all related movies</p>
                     <p>This action cannot be undone</p>
                 </div>
                 <div class="modal-footer">

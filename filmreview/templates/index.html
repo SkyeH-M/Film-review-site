@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="text-center">Welcome to your film review site!</h1>
+<h1 class="text-center welcome-message">Welcome to Reel Reviews <i class="fa-solid fa-film"></i></h1>
 <span id="indexPosterImg">
-    <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-9 mx-auto d-block" alt="Index poster image">
+    <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-12 mx-auto d-block" alt="Index poster image">
 </span>
-<p class="text-center">Please create a Film List to begin reviewing</p>
-<a href="{{ url_for('add_watchlist') }}" type="button" class="btn text-center" id="createFirstList">Create your first list</a>
+<div id="indexIntro">
+    <h3>Create an account and login to access our film search page and leave reviews for your most recent watches</h3>
+    <!-- <p class="text-center" id="indexP">Please create a Movie List to begin reviewing</p> -->
+</div>
+<!-- <a href="{{ url_for('add_watchlist') }}" type="button" class="btn text-center" id="createFirstList">Create your first list</a> -->
 
 
 {% endblock %}
