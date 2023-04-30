@@ -195,13 +195,34 @@ def edit_film(film_id):
     film = Film.query.get_or_404(film_id)
     watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
     if request.method == "POST":
-        film.id = request.form.get("id")
+        # film.id = request.form.get("id")
         film.film_title = request.form.get("film_title")
         film.star_rating = request.form.get("rating")
         film.written_review = request.form.get("writtenReview")
         film.watchlist_id = request.form.get("watchlist_id")
-        db.session.commit()
+        # determine if user has not selected a watchlist
+        if film.watchlist_id == "Choose your Film List":
+            flash("Please choose a film list for your review")
+        else:
+            db.session.commit()
+            flash("Your review has been updated")
+            return redirect(url_for('films'))
     return render_template("edit_film.html", film=film, watchlists=watchlists)
+
+
+@app.route("/delete_film/<int:film_id>")
+@login_required
+def delete_film(film_id):
+    film = Film.query.get_or_404(film_id)
+    if film.reviewed_by != current_user.username:
+        flash("You cannot delete another user's list")
+        return redirect(url_for('films'))
+
+    if film.reviewed_by == current_user.username:
+        db.session.delete(film)
+        db.session.commit()
+        flash("Your film list has been deleted")
+    return redirect(url_for("films"))
 
 
 @app.route("/login", methods=["GET", "POST"])
