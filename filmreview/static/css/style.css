@@ -16,6 +16,7 @@ main {
 .page-footer {
   color: white;
   margin-top: 20px;
+  background-color:#14181c;
 }
 
 #flashMessage {
@@ -131,7 +132,8 @@ body {
 .flashes {
   margin-top: 20px;
   margin-bottom: 20px;
-  background: rgb(166, 124, 225);
+  /* background: rgb(166, 124, 225); */
+  background: rgb(133 139 180);
   border-style: solid;
 }
 
@@ -153,24 +155,30 @@ body {
 }
 
 .welcome-message {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   margin-top: 20px;
   margin-bottom: 20px;
   color: white;
 }
 
 #indexPosterImg img {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 #indexIntro {
-  background-color: #727E71;
+  /* background-color: #727E71; */
+  background-color: whitesmoke;
   margin: auto;
 }
 
-#indexIntro h3{
+#indexIntro h2{
   font-size: 1.2rem;
-  color: white;
+  color: black;
+}
+
+#indexIntro h3 {
+  color: black;
+  font-size: 1rem;
 }
 
 .navbar {
@@ -185,6 +193,102 @@ body {
   color: white;
 }
 
+.nav-link:focus, .nav-link:hover {
+  color: rgb(146, 146, 185);
+}
+
+.navbar-brand:focus, .navbar-brand:hover {
+  color: rgb(146, 146, 185);
+}
+
 .navbar-toggler span {
   color: white !important;
+}
+
+.form-signin {
+  margin-top: 30px;
+}
+
+.form-signin h4 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+#loginBtn {
+  margin: auto;
+  margin-top: 20px;
+  background-color: white;
+  color: black;
+}
+
+#loginBtn:hover {
+  /* change to blue shade? */
+  background-color: rgb(135, 176, 135);
+}
+
+.sign-up {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sign-up-form h4 {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+#sign-up-btn {
+  margin: auto;
+  background-color: white;
+  color: black;
+}
+
+#sign-up-btn:hover {
+  background-color: rgb(135, 176, 135);
+}
+
+#film-review-form-title {
+  font-size: 1.5rem;
+}
+
+.rating {
+  color: black;
+}
+
+#reviewSubmit {
+  background-color:rgb(88, 135, 88);
+  color: white;
+}
+
+/* Make button enlarge on hover */
+.btn {
+  cursor: pointer;
+  transition: .2s ease-in-out 0s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+#add-list-btn {
+  background-color:rgb(88, 135, 88);
+  color: white;
+}
+
+.add-watchlist-container h3 {
+  margin-top: 20px;
+}
+
+.form-group {
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.watchlist-card {
+  margin: auto;
+}
+
+#edit-list-title {
+  font-size: 1.7rem;
+  text-align: center;
+  margin-top: 20px;
 }

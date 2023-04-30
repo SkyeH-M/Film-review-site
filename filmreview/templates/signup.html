@@ -2,19 +2,17 @@
 {% from "bootstrap4/form.html" import render_field %}
 {% block content %}
 
-<h3 class="text-center">Sign up <i class="fa-solid fa-user-plus"></i></h3>
-<p>This is the signup form page
-</p>
+<h3 class="text-center sign-up">Sign up <i class="fa-solid fa-user-plus"></i></h3>
 
 <!-- Bootstrap Form -->
-<form class="login" method="POST" action="/signup">
+<form class="sign-up-form" method="POST" action="/signup">
     <h4>Please enter your details to create an account</h4>
     {{ form.hidden_tag() }}
     {{ render_field(form.username) }}
     {{ render_field(form.email) }}
     {{ render_field(form.password) }}
       <br>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button type="submit" class="btn" id="sign-up-btn">Sign Up</button>
   </form>
 
 {% endblock %}

@@ -4,13 +4,13 @@
 <div class="row card film-form-card">
   <form class="col-12 film-form" method="POST" action="{{ url_for('add_film') }}">
       <div class="form-group col-12">
-          <h3 class="text-center">Review A Film</h3>
-          <span id="filmPosterImg">
+          <h3 class="text-center" id="film-review-form-title">Review A Film</h3>
+          <!-- <span id="filmPosterImg">
               <img src="{{ url_for('static', filename='images/review-img.jpg')}}" class="card-img-top col-7 mx-auto d-block" alt="Movie poster image">
-          </span>
+          </span> -->
       </div>
       <div class="form-group col-12">
-          <p>Form fields marked with a <span class="requiredField">*</span> symbol are required, so please fill them in</p>
+          <p class="text-center">Form fields marked with a <span class="requiredField">*</span> symbol are required, so please fill them in</p>
           <!-- Film title -->
           <label for="film_title">Title<span class="requiredField">*</span></label>
           <input type="text" class="form-control" id="film_title" name="film_title" required minlength="3"
@@ -48,7 +48,7 @@
     </div>
       <div class="form-group col-12 text-center">
         <!-- Submit Button -->
-          <button class="btn btn-secondary" id="reviewSubmit" type="submit">
+          <button class="btn" id="reviewSubmit" type="submit">
               Submit Review
           </button>
       </div>

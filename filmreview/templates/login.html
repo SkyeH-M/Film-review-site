@@ -1,19 +1,16 @@
 {% extends "base.html" %}
 {% from "bootstrap4/form.html" import render_field %}
 {% block content %}
-
-<h2 class="center-align">Login</h2>
-<p>This is the login page
-</p>
-
+<div class="login-container">
 <!-- Bootstrap Log In form -->
 <form class="form-signin" method="POST" action="/login">
-    <h4>Please enter your details to log in</h4>
+    <h4>Please enter your details to log in <i class="fa-solid fa-right-to-bracket"></i></h4>
     {{ form.hidden_tag() }}
     {{ render_field(form.username) }}
     {{ render_field(form.password) }}
-    <button type="submit" class="btn btn-primary">Log In</button>
+    <button type="submit" class="btn text-center" id="loginBtn">Log In</button>
   </form>
+</div>
 
 
 
