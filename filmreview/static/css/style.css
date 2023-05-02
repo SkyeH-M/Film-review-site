@@ -178,6 +178,18 @@ body {
   border-radius: 10px;
 }
 
+.create i {
+  float: left;
+}
+
+.organise i {
+  float: left;
+}
+
+.share i {
+  float: left;
+}
+
 .organise {
   background-color: #4b5564;
   min-height: 50px;
@@ -216,20 +228,18 @@ body {
 
 .fa-solid, .fas i {
   font-size: 2rem;
-  float: left;
+  float: none;
   padding: 5px;
 }
 
 .fa-right-to-bracket {
   padding: 0;
   font-size: 1.7rem;
-  float: none;
 }
 
 .fa-user-plus {
   padding: 0;
   font-size: 1.7rem;
-  float: none;
 }
 
 .navbar {
@@ -388,10 +398,6 @@ body {
   text-align: center;
 }
 
-.fa-magnifying-glass {
-  float: none;
-}
-
 .addWatchListBtn {
   margin: auto;
   background-color: white;
@@ -406,8 +412,158 @@ body {
   background-color: rgb(135, 176, 135);
 }
 
-.fa-pen {
-  float: none;
+.filmListTitle {
+  margin-top: 20px;
 }
 
 /* Media Queries */
+
+/* Styling specific to small screen like Galaxy Fold */
+@media (max-width: 280px) {
+  /* Index */
+  .welcome-message {
+    font-size: 1.1rem;
+  }
+  .fa-film {
+    font-size: 1.5rem;
+    margin-top: -5px;
+  }
+  #indexIntro h2 {
+    font-size: 0.9rem;
+  }
+  #indexIntro h3 {
+    font-size: 0.9rem;
+  }
+  .flashes {
+    font-size: 0.9rem;
+  }
+  /* Search */
+  .welcomeUser {
+    font-size: 1.2rem;
+  }
+  .fa-magnifying-glass {
+    font-size: 1rem;
+  }
+  /* .filmDataContainer {
+    width: 100%;
+  } */
+  /* .filmCard {
+    width: 300px;
+  } */
+  /* Review Form */
+  #film-review-form-title {
+    font-size: 1.1rem;
+  }
+  .fa-file-circle-plus {
+    font-size: 1.5rem;
+    margin-top: -5px;
+  }
+  .form-group p {
+    font-size: 0.8rem;
+  }
+  .form-select {
+    font-size: 0.9rem;
+  }
+  /* Review Page */
+  .reviewWelcome h3 {
+    font-size: 1.3rem;
+  }
+  .fa-file-lines {
+    font-size: 1.5rem;
+  }
+  .reviewWelcome p {
+    font-size: 0.9rem;
+  }
+  /* Film List */
+  .filmListTitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Index */
+  .fa-film {
+    font-size: 1.4rem;
+  }
+  .welcome-message {
+    font-size: 1.3rem;
+  }
+  /* My reviews */
+  .fa-right-to-bracket {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 390px) {
+  .btnSearch {
+    font-size: 1rem;
+    padding: 2px;
+  }
+  .film-form-card {
+    margin-top: 50px;
+  }
+}
+
+/* Ipad/tablet styling */
+@media (min-width: 700px) {
+  .navbar-brand {
+    font-size: 2rem !important;
+  }
+  .navbar-toggler {
+    font-size: 2rem;
+  }
+  .nav-item {
+    font-size: 1.5rem;
+  }
+  /* Index */
+  .welcome-message {
+    font-size: 2rem;
+  }
+  .create {
+    margin: 20px;
+  }
+
+  .organise {
+    margin: 20px;
+  }
+
+  .share {
+    margin: 20px;
+  }
+
+  #indexIntro h2 {
+    font-size: 1.5rem;
+  }
+  #indexIntro h3 {
+    font-size: 1.5rem;
+  }
+  
+  .page-footer p {
+    font-size: 1.3rem;
+  }
+  /* Search */
+  .welcomeUser {
+    font-size: 2rem;
+  }
+
+  .search-description {
+    font-size: 1.5rem;
+  }
+
+  .search-wrapper label {
+    font-size: 1.5rem;
+    margin-right: 15px;
+  }
+
+  #search {
+    font-size: 1.5rem;
+  }
+
+  .btnSearch {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    margin-top: 0px;
+  }
+}
+
+/* BUG: Each row on larger screens is opening to the same size when the accordion is clicked */

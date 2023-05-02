@@ -236,6 +236,7 @@ def login():
                 # signs user in, can now access loginRequired pages
                 login_user(user)
                 # this redirect will be changed to films
+                flash("You've been logged in")
                 return redirect(url_for('films'))
         else:
             flash('Wrong username or password, please try again')
