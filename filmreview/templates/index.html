@@ -2,13 +2,24 @@
 {% block content %}
 <h1 class="text-center welcome-message">Welcome to Reel Reviews <i class="fa-solid fa-film"></i></h1>
 <span id="indexPosterImg">
-    <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-12 mx-auto d-block" alt="Index poster image">
+    <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-12 mx-auto d-block"
+        alt="Index poster image">
 </span>
 <div id="indexIntro" class="text-center">
-    <h2>Create an account and login to access our film search page and leave reviews for your most recent watches</h3>
-    <h2>Make Film Lists to organise your reviews, then edit or delete a review whenever you change your mind</h3>
-    <h3>Start sharing your Reel Reviews now...</h3>
-    <!-- <p class="text-center" id="indexP">Please create a Movie List to begin reviewing</p> -->
+    <div class="create">
+        <h2 class="createMessage"><i class="fa-solid fa-square-plus index-icon"></i> Create an account and login to
+            access our film search page and leave reviews for your most recent watches</h3>
+    </div>
+    <div class="organise">
+        <h2 class="organiseMessage"><i class="fa-solid fa-eraser index-icon"></i> Make Film Lists to organise your
+            reviews, then edit or delete a review whenever you change your mind</h3>
+    </div>
+    <div class="share">
+        <h3 class="shareMessage"><i class="fa-solid fa-share-from-square index-icon"></i> Start sharing your Reel
+            Reviews now <br>
+            ...</h3>
+    </div>
+    <!-- <p class="text-center" id="indexP">Please create a Film List to begin reviewing</p> -->
 </div>
 <!-- <a href="{{ url_for('add_watchlist') }}" type="button" class="btn text-center" id="createFirstList">Create your first list</a> -->
 

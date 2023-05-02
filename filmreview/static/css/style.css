@@ -1,3 +1,6 @@
+/* need to media quert index page !*/
+/* box shadow for index image*/
+
 /* * {
   overflow: hidden;
 } */
@@ -155,7 +158,7 @@ body {
 }
 
 .welcome-message {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   margin-top: 20px;
   margin-bottom: 20px;
   color: white;
@@ -166,19 +169,67 @@ body {
 }
 
 #indexIntro {
-  /* background-color: #727E71; */
-  background-color: whitesmoke;
   margin: auto;
 }
 
-#indexIntro h2{
-  font-size: 1.2rem;
-  color: black;
+.create {
+  background-color: #4b5564;
+  min-height: 50px;
+  border-radius: 10px;
+}
+
+.organise {
+  background-color: #4b5564;
+  min-height: 50px;
+  border-radius: 10px;
+}
+
+.share {
+  background-color: #4b5564;
+  min-height: 50px;
+  border-radius: 10px;
+}
+
+#indexIntro h2 {
+  font-size: 1rem;
+  color: white;
 }
 
 #indexIntro h3 {
-  color: black;
   font-size: 1rem;
+}
+
+#indexIntro .createMessage {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+#indexIntro .organiseMessage {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+#indexIntro .shareMessage {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.fa-solid, .fas i {
+  font-size: 2rem;
+  float: left;
+  padding: 5px;
+}
+
+.fa-right-to-bracket {
+  padding: 0;
+  font-size: 1.7rem;
+  float: none;
+}
+
+.fa-user-plus {
+  padding: 0;
+  font-size: 1.7rem;
+  float: none;
 }
 
 .navbar {
@@ -205,6 +256,10 @@ body {
   color: white !important;
 }
 
+.navbar-nav .nav-link.active {
+  color: white;
+}
+
 .form-signin {
   margin-top: 30px;
 }
@@ -222,7 +277,6 @@ body {
 }
 
 #loginBtn:hover {
-  /* change to blue shade? */
   background-color: rgb(135, 176, 135);
 }
 
@@ -292,3 +346,68 @@ body {
   text-align: center;
   margin-top: 20px;
 }
+
+.addFilmBtn {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+}
+
+.addFilmBtn:hover {
+  background-color: rgb(135, 176, 135);
+}
+
+.reviewWelcome h3 {
+  margin-top: 20px;
+}
+
+.btnSearch {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+}
+
+.btnSearch:hover {
+  background-color: rgb(135, 176, 135);
+}
+
+.welcomeUser {
+  font-size: 1.6rem;
+  margin: 20px auto;
+}
+
+.search-description {
+  text-align: center;
+}
+
+.search-wrapper {
+  text-align: center;
+}
+
+.fa-magnifying-glass {
+  float: none;
+}
+
+.addWatchListBtn {
+  margin: auto;
+  background-color: white;
+  color: black;
+}
+
+.addWatchListBtn:hover {
+  background-color: rgb(135, 176, 135);
+}
+
+.editFilmListBtn:hover {
+  background-color: rgb(135, 176, 135);
+}
+
+.fa-pen {
+  float: none;
+}
+
+/* Media Queries */

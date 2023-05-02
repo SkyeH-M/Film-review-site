@@ -2,17 +2,15 @@
 {% from "bootstrap4/form.html" import render_field %}
 {% block content %}
 
-<h2 class="text-center">Search</h2>
-<h3>Welcome, {{ name }}</h3>
-<p>This page is to add movies to a movie list, or to add reviews to movies you've watched </p>
+<h3 class="text-center welcomeUser">Welcome, {{ name }} <i class="fa-solid fa-magnifying-glass"></i></h3>
+<p class="search-description">Search for any film by title, read its information and review the films you've watched</p>
 
 <form method="POST" action="{{ url_for('search') }}" class="search-wrapper">
-    <label for="search">Search Movies</label>
+    <label for="search">Search Films </label>
     
     <input type="search" id="search" aria-label="Search" name="search">
-    <button type="submit">Search</button>
+    <button class="btn btnSearch" type="submit">Search</button>
 </form>
-<!-- <p>You searched for... {{ search_string }}</p> -->
 
 <div class="container text-center">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -22,7 +20,7 @@
         <div class="accordion accordion-flush" id="searchAccordion-{{ loop.index }}">
             <div class="accordion-item">
                 {% set url="https://image.tmdb.org/t/p/w300/" %}
-                <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Movie poster image">
+                <img class="card-img-top" src="{{ url }}{{ movie.poster_path }}" alt="Film poster image">
                 <h4 class="accordion-header card-title" id="flush-search-heading" data-value="{{ movie.original_title }}">{{ movie.original_title }}
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#search-{{ loop.index }}" aria-expanded="false" aria-controls="#search-{{ loop.index }}">
                 </button>
