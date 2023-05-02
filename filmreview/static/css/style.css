@@ -564,6 +564,82 @@ body {
     margin-left: 20px;
     margin-top: 0px;
   }
+  /* Review Form */
+  #film-review-form-title {
+    font-size: 2rem;
+  }
+
+  .form-group p {
+    font-size: 1.3rem;
+  }
+
+  .form-group label {
+    font-size: 1.3rem;
+  }
+  
+  .rating label {
+    font-size: 2rem;
+  }
+
+  .form-select {
+    font-size: 1.3rem;
+  }
+
+  #reviewSubmit {
+    font-size: 1.5rem;
+  }
+
+  /* my reviews */
+  .reviewWelcome h3 {
+    font-size: 2rem;
+  }
+
+  .reviewWelcome p {
+    font-size: 1.3rem;
+  }
+
+  .addFilmBtn {
+    font-size: 1.4rem;
+  }
+
+  .accordion-button {
+    font-size: 1.5rem !important;
+  }
+
+  .accordion-body {
+    font-size: 1.3rem;
+  }
+
+  .accordion-footer a {
+    font-size: 1.3rem;
+  }
+  /* Film Lists */
+
+  .filmListTitle {
+    font-size: 2rem;
+  }
+
+  .filmListDescription {
+    font-size: 1.3rem;
+  }
+
+  .addWatchListBtn {
+    font-size: 1.3rem;
+  }
+
+  .card-body h5{
+    font-size: 1.5rem;
+  }
+
+  .card-body h6 {
+    font-size: 1.3rem;
+  }
+
+  .card-buttons a {
+    margin-top: 15px;
+    font-size: 1.3rem;
+  }
 }
 
-/* BUG: Each row on larger screens is opening to the same size when the accordion is clicked */
+/* BUG: Each row on larger screens is opening to the same size when the accordion is clicked 
+   Film rating display page doesn't have same issue as search results, find out why */
