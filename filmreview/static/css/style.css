@@ -250,6 +250,10 @@ body {
   color: white;
 }
 
+#film-reel-img {
+  width: 25px;
+}
+
 .nav-link {
   color: white;
 }
@@ -538,6 +542,11 @@ body {
     font-size: 1.5rem;
   }
   
+  #indexPosterImg img{
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+
   .page-footer p {
     font-size: 1.3rem;
   }
@@ -582,6 +591,10 @@ body {
   }
 
   .form-select {
+    font-size: 1.3rem;
+  }
+
+  #writtenReview {
     font-size: 1.3rem;
   }
 
@@ -639,7 +652,39 @@ body {
     margin-top: 15px;
     font-size: 1.3rem;
   }
+
+  #flashMessage {
+    font-size: 1.5rem;
+  }
+  /* Login */
+
+  .form-signin h4 {
+    font-size: 2rem;
+  }
+
+  .fa-solid, .fa-right-to-bracket {
+    font-size: 2.5rem;
+  }
+
+  .form-group label {
+    font-size: 1.5rem;
+  }
+
+  #loginBtn {
+    font-size: 1.5rem;
+  }
+
+  /* Sign Up */
+  #sign-up-btn {
+    font-size: 1.5rem;
+  }
 }
+
+/* @media (min-width: 768px) {
+  .watchlist-card {
+    margin: auto;
+  }
+} */
 
 /* BUG: Each row on larger screens is opening to the same size when the accordion is clicked 
    Film rating display page doesn't have same issue as search results, find out why */
