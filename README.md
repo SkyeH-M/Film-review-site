@@ -116,4 +116,54 @@ The Reel Reviews website is comprised of 7 different sections, Home, Signup, Log
 
 
 * Future Implementations:
-  * Help
+  * Ideally I wanted to be able to display film cards with their respective film information and when a user clicked the review button the review form would be pre-populated with the poster image and title that they had selected. This wasn't achievable as tutor support couldn't advise me on how to do so without using Mongo DB and I didn't have time to restart my entire project. In the future this would be the desired functionality of the site and I regret that I couldn't accomplish this
+  * Another key future implementation would be to program the film lists so that users can assign a film review to a specifc list and when they clicked on that list all the reviews associated would be displayed. This wasn't possible for me to do on my own with my current knowledge, and again was something that tutor support were unfortunately unable to advise me on how to accomplish this
+  * A business goal for a future implementation would be to allow users to add their friends by username so they could see what their friends have watched and reviewed. It would also be great if users could comment on, or like these reviews to provide a sense of interactivity and communication between users.
+
+### Accessibility 
+!!!!!!!!!! Need to have a deployed site !!!!!!!!!!!
+
+### Wireframes
+!!!!!! Need to complete !!!!!
+
+### Languages Used
+* This project utilised HTML, CSS, and Python predominantly, with a small amount of JavaScript being used to automatically update the copyright information in the footer
+
+### Frameworks, Libraries, and Programs Used
+* [Adobe XD](https://helpx.adobe.com/uk/support/xd.html) was used to create the Wireframes seen above
+* [ALLY](https://color.a11y.com/) was used to test for colour contrast issues on the site
+* [Bootstrap](https://getbootstrap.com/) was utilised to create a core html structure so that my time could be spend on creating the databases and core functionality rather than doing all styling myself
+* [ElephantSQL](https://www.elephantsql.com/) was used to host the database for this site
+* [Favicon](https://favicon.io/) was utilised to create a Favicon for my site's browser tab, and the logo for the navbar
+* [Flask](https://flask.palletsprojects.com/en/2.3.x/) was utilised to set up this project, in conjunction with Python and aided in the functionality of the databases
+* [Font Awesome version 6](https://fontawesome.com/) was used for all icons seen across the site
+* [Gifox](https://gifox.app/) was used to create a video/gif to demonstrate hover effects and redirect functionality for this readme document
+* [Github](https://github.com/) was used to store the repository for this quiz project, with Github Pages hosting the site
+* [Gitpod](https://www.gitpod.io/) is the environment in which this project was created and worked on
+* Google Chrome Developer Tools was used as a debugging tool, and to help visualise the site in different screen sizes to ensure that user experience remained clean and efficient no matter the device utilised by the user
+* [Google Fonts](https://fonts.google.com/) provided the links for both fonts used on the site, and aided in selecting fonts that are complimentary to one another
+* [Heroku](https://www.heroku.com/?) was used in addition to Github as the deployment platform for this site due to the use of databases
+* [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) was used due to it being a templating lanuage which enabled me to have a base.html template with all other html pages inheriting core functionality from this
+* [SQLAlchemy](https://www.sqlalchemy.org/) was used for the creation and maintenance of the relational databases used in the project
+* [Tech Sini](https://techsini.com/multi-mockup/index.php) aided in the creation of a multi-device mockup image so that I could test the appearance and functionality of the site on multiple device sizes, and provided the image seen at the beginning of this document
+* [WAVE](https://wave.webaim.org/) Web Accessibility Evaluation Tool was used to test my site against accessibility criteria.
+* [Werkzeug](https://werkzeug.palletsprojects.com/en/2.3.x/) was used mainly for password hashing to ensure security of information in the Users database
+* [WTForms](https://wtforms.readthedocs.io/en/3.0.x/) aided in rendering form fields without me having to hard code them, and provided CSRF protection 
+
+* In addition to the Frameworks, Libraries, and Programs used I encorporated the use of [TMDB API](https://developers.themoviedb.org/3/getting-started) which allowed me to connect to the API, retrieve their film data, and display that to users when they search for films. The use of this API was integral to the functioning of my site
+
+### Deployment 
+!!!!! Need to deploy and write down steps for Heroku !!!!!!
+
+## Testing
+## Automated Testing
+
+### W3 Nu HTML Validator 
+
+### W3C CSS Validation Service
+
+### CI Python Linter
+
+### Wave Testing
+
+### 

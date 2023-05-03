@@ -234,7 +234,6 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 # signs user in, can now access loginRequired pages
                 login_user(user)
-                # this redirect will be changed to films
                 flash("You've been logged in")
                 return redirect(url_for('search'))
         else:
