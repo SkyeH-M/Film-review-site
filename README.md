@@ -133,6 +133,7 @@ The Reel Reviews website is comprised of 7 different sections, Home, Signup, Log
 * [Adobe XD](https://helpx.adobe.com/uk/support/xd.html) was used to create the Wireframes seen above
 * [ALLY](https://color.a11y.com/) was used to test for colour contrast issues on the site
 * [Bootstrap](https://getbootstrap.com/) was utilised to create a core html structure so that my time could be spend on creating the databases and core functionality rather than doing all styling myself
+* [CI Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python used in my project
 * [ElephantSQL](https://www.elephantsql.com/) was used to host the database for this site
 * [Favicon](https://favicon.io/) was utilised to create a Favicon for my site's browser tab, and the logo for the navbar
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/) was utilised to set up this project, in conjunction with Python and aided in the functionality of the databases
@@ -159,11 +160,29 @@ The Reel Reviews website is comprised of 7 different sections, Home, Signup, Log
 ## Automated Testing
 
 ### W3 Nu HTML Validator 
+I used the W3 Nu HTML Validator multiple times throughout development to ensure the HTML being used was sufficient and compliant with industry standards, the results of which can be found below
+* [Index page](/filmreview/docs/testing/index-HTML-check.png)
+* [Sign Up page](/filmreview/docs/testing/signup-HTML-check.png)
+* [Log in page](/filmreview/docs/testing/login-HTML-check.png)
+* [Search Page](/filmreview/docs/testing/search-HTML-check.png)
+* [Add Film Review page](/filmreview/docs/testing/review-form-HTML-check.png) the Film Review page returned 2 errors due to the jinja templating being used, the errors ask me to add things that aren't possible due to how the code works. These errors do not affect the user in any way but hopefully in the future I can find a way around these errors
+* [My Reviews page](/filmreview/docs/testing/review-page-HTML-check.png)
+* [My Film Lists page](/filmreview/docs/testing/lists-HTML-check.png)
 
 ### W3C CSS Validation Service
+* [CSS Check](/filmreview/docs/testing/css-validate.png)
+* As displayed above, no errors were found in my CSS file
+* There is one warning raised which mentions "Due to their dynamic nature, CSS variables are currently not statically checked". This is related to line 98 of my file which is essential for the functioning of my star rating. As this is just a warning about the variable not currently being checked I'm happy to leave the warning as it is
 
 ### CI Python Linter
+I used the CI Python Linter to test the validity and PEP8 compliance of my Python code used throughout this project, no files returned any errors which demonstrates that I've always followed PEP8 compliance rules. Below I have attached screenshots showing the validation results and that no errors were found
+* [Init File](/filmreview/docs/testing/init-check.png)
+* [Models File](/filmreview/docs/testing/models-check.png)
+* [Routes File](/filmreview/docs/testing/routes-check.png)
+* [Env File](/filmreview/docs/testing/env-check.png)
+* [Run File](/filmreview/docs/testing/run-check.png)
 
 ### Wave Testing
+!!!!!!! Need to deploy !!!!!!!
 
 ### 

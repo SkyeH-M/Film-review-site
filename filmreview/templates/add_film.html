@@ -5,9 +5,6 @@
   <form class="col-12 film-form" method="POST" action="{{ url_for('add_film') }}">
       <div class="form-group col-12">
           <h3 class="text-center" id="film-review-form-title">Review A Film <i class="fa-solid fa-file-circle-plus"></i></h3>
-          <!-- <span id="filmPosterImg">
-              <img src="{{ url_for('static', filename='images/review-img.jpg')}}" class="card-img-top col-7 mx-auto d-block" alt="Film poster image">
-          </span> -->
       </div>
       <div class="form-group col-12">
           <p class="text-center">Form fields marked with a <span class="requiredField">*</span> symbol are required, so please fill them in</p>
@@ -31,7 +28,7 @@
       <div class="form-group col-12">
         <!-- Written Review -->
           <label for="writtenReview">Add a written review?</label>
-          <textarea type="text" class="form-control" id="writtenReview" name="writtenReview" placeholder="Add your review here" minlength="3"
+          <textarea class="form-control" id="writtenReview" name="writtenReview" placeholder="Add your review here" minlength="3"
               maxlength="200"></textarea>
       </div>
       <!-- watchlist_id -->
