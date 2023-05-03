@@ -25,6 +25,7 @@ main {
 
 .footer-copyright p {
   font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.8rem;
 }
 
 #flashMessage {
@@ -120,7 +121,6 @@ body .watchlist-card {
 }
 
 body {
-  /* background-color:#71797E; */
   background-color: #2c3440;
 }
 
@@ -130,7 +130,6 @@ body {
   margin-bottom: 10px;
 }
 
-
 /* Add margin to Bootstrap columns - Seb33300 */
 [class*="row-cols-"] {
   background-clip: padding-box;
@@ -138,9 +137,8 @@ body {
 }
 
 .flashes {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  /* background: rgb(166, 124, 225); */
+  margin-top: 10px;
+  margin-bottom: 10px;
   background: rgb(133 139 180);
   border-style: solid;
 }
@@ -425,6 +423,30 @@ body {
 
 .filmListTitle {
   margin-top: 20px;
+}
+
+.social-media {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.social-media li {
+  display: inline-block;
+  text-align: center;
+}
+
+.social-media i {
+  font-size: 1.6rem;
+  color: white;
+  padding: 10px;
+}
+
+.social-media i:hover {
+  color: rgb(146, 146, 185);
+}
+
+.social-media a {
+  text-decoration: none;
 }
 
 /* Media Queries */
@@ -850,6 +872,10 @@ body {
 
   .card-buttons a {
     font-size: 1.2rem;
+  }
+
+  .social-media i {
+    font-size: 2.2rem;
   }
 }
 
