@@ -214,13 +214,13 @@ def edit_film(film_id):
 def delete_film(film_id):
     film = Film.query.get_or_404(film_id)
     if film.reviewed_by != current_user.username:
-        flash("You cannot delete another user's list")
+        flash("You cannot delete another user's review")
         return redirect(url_for('films'))
 
     if film.reviewed_by == current_user.username:
         db.session.delete(film)
         db.session.commit()
-        flash("Your film list has been deleted")
+        flash("Your film review has been deleted")
     return redirect(url_for("films"))
 
 
@@ -251,7 +251,7 @@ def signup():
         existing_username = Users.query.filter(Users.username == request.form
                                                .get("username").lower()).all()
         if existing_username:
-            flash("This username has already been taken,"
+            flash("This username has already been taken, "
                   "please choose another")
             return redirect(url_for('signup'))
 

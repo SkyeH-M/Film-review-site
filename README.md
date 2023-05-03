@@ -76,4 +76,44 @@ The predominant colour scheme of this site is grey and blue tones, with aspects 
 
 ### Typography
 
+[Google Fonts](https://fonts.google.com/) provided the fonts I used on my site
+![Image of Navbar Title font](/filmreview/docs/limelight.png)
+* Limelight is the font used for my navbar title, this is a Sorkin type font that is a rendition of more typical sans-serif fonts. I selected this as my title font as it's very visually evocative of cinema and film typography which fits the theme of my site and conveys that theme to the user
 
+![Image of body font](/filmreview/docs/Noto-Sans-Japanese.png)
+* The body of my site is all Noto Sans Japanese font, this font is also a sans-serif which maintains consistency throughout the typography used. I chose this font primarily for its readibility as I want users to always be able to clearly read all text, along with its sleek and classic font style.
+
+### Icons and Images
+
+* I created a Favicon for this site using the png converter on the [Favicon](https://favicon.io/) website as I couldn't find an icon of a film reel on sites like FontAwesome. The film reel logo and favicon easily conveys the theme of the site to users and adds a pop of colour to draw the eye when amongst many others tabs in a users browser bar. The icon itself was sourced from [Flaticon](https://www.flaticon.com/) and will be attributed to its individual creator in the credits section of this document.
+* All icons used throughout the site were provided by [FontAwesome](https://fontawesome.com/)
+* The image on the index page was created by myself by sourcing popular film poster images (that will be individually attributed in the credits section) and splicing these together to create a banner like effect to showcase different films available on the site
+
+
+### Features
+The Reel Reviews website is comprised of 7 different sections, Home, Signup, Login, Search, Add Film Review, My Reviews, My Film Lists
+
+| Section | Feature | Photograph or gif |
+| --- | --- | --- |
+| The Home page appears on page load and welcomes the user to the site, it features a triptych of film poster images along with basic information about what users can do on the site | The user is welcomed to the site and immediately sees the 3 poster images which aim to draw the user in and provide a great pop of colour to the home page | ![Index welcome image](/filmreview/docs/index-welcome.png) |
+| | The home page feature description section introduces the user to the capabilities of the site in an easily digestible way so that users are aware of what they can do | ![Index feature description](/filmreview/docs/index-features.png) | 
+| The Signup page allows users to enter their details to create an account | The user must enter a username, their email and password to signup | ![Sign Up form](/filmreview/docs/signup-form.png) |
+| | There is a limit to how long a username can be, and all fields must be filled in otherwise a warning will display that this must be completed. The password a user provides is hashed using Werkzeug security so that all information is secure | ![Sign up form warning](/filmreview/docs/signup-form-warning.png) |
+| | The username a user adds must be unique, and so if they attempt to register with a username that is already taken they will receive a Flash message warning | ![Username taken warning](/filmreview/docs/username-taken-warning.png)|
+| The Login page allows users to login to their account | If a user enters incorrect information they are warned and prompted to try again | ![Incorrect Login warning](/filmreview/docs/wrong-login-warning.png)|
+| The Search page appears simple and plain at first to encourage the focus to be on users searching for films as that is the functionality of the page | The user is welcomed by their username to add a personalised feel, they can then search any film by title. This search runs through API data from [TMDB API](https://www.themoviedb.org/) and is returned as JSON data which is formatted and displayed to the user | ![search bar](/filmreview/docs/search-bar.png) |
+| | When a user has searched for a film every film in TMDB API that matches that title will be displayed on screen, in different row configurations depending on screen size | ![Search results](/filmreview/docs/film-data-accordion.png) |
+| | Once a user finds the film they wanted to search for they can click the accordion button to drop down the release date and description. A review button sits at the bottom of each film card so that a user can click the button that corresponds to the film they wish to review. This review button when hovered over becomes larger and its background colour turns green to indicate it should be clicked | ![Film accordion data](/filmreview/docs/film-drop-down.png)|
+| | If a user searches for a film that doesn't exist within TMDB API an error message will display acknowledging that unfortunately this film could not be retrived | ![Film not found warning](/filmreview/docs/film-not-found.png)| 
+| The Add Film Review form is comprised of form fields for the film title, the star rating, an optional written review and a custom selector to choose a film list, before clicking the Submit Review button | The form has 3 required fields, as shown by the red asterisk by each field, if these forms aren't filled out a warning is shown. | ![Film review form](/filmreview/docs/film-review-form.png)|
+| | The star rating form field works by the user hovering over each star icon which increment in value as you go further to the right, clicking on the star you want to award will save the value | ![Star Rating](/filmreview/docs/star-rating.gif)| 
+| | If a user attempts to submit a film review either without selecting a film list, or without having a film list created they will be redirected to the form that allows them to add a film list | ![Film list is necessary](/filmreview/docs/addFilmListRedirect.gif) |
+| The My Reviews page features an add film button, and once users have reviewed films it will display each review, sorted by highest star rating to lowest | The Add Film review button exists to allow users to submit reviews without having to use the search functionality if they don't want to, or if a film isn't available on the search functionality. This button brings the user to the add film review form | ![my reviews page](/filmreview/docs/my-reviews.png) |
+| | The film review accordion displays the film title, when the accordion is clicked it drop downs to display star rating, and written review (if the user provided one) | ![Film Review info](/filmreview/docs/film-review-info.png)|
+| | Edit and delete buttons sit underneath the star rating and review when the film accordion is dropped down, this allows a user to change any aspect of their review, or brings them to a modal which allows them to delete the review if they wish. This delete modal provides defensive programming and is also featuring if a user attempts to delete a film list | ![Delete modal](/filmreview/docs/delete-modal.png)|
+| The My Film Lists page features a button that allows a user to create their film list, then displays the existing film lists to the user | The Add Film List button when clicked takes the user to a form where they can create their own film lists. They must give their list a name, which has a character limit for design purposes, and can also enter a genre if they wish to group film reviews by genre | ![Add Film List](/filmreview/docs/add-film-list.png) |
+| | The film lists display the title given by the user, their username, and which genre they entered (if they did), along with edit and delete buttons that work the same way as the edit and delete film review buttons mentioned above | ![film list](/filmreview/docs/my-film-lists.png)|
+
+
+* Future Implementations:
+  * Help
