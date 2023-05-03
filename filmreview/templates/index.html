@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="text-center welcome-message">Welcome to Reel Reviews <i class="fa-solid fa-film"></i></h1>
+<h1 class="text-center welcome-message">Welcome to Reel Reviews</h1>
 <span id="indexPosterImg">
     <img src="{{ url_for('static', filename='images/indexImg.png') }}" class="card-img-top col-12 mx-auto d-block"
-        alt="Index poster image">
+        id="indexImg" alt="Index poster image">
 </span>
 <div id="indexIntro" class="text-center">
     <div class="create">

@@ -9,7 +9,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  color: white
+  color: white;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 main {
@@ -20,6 +21,10 @@ main {
   color: white;
   margin-top: 20px;
   background-color:#14181c;
+}
+
+.footer-copyright p {
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 #flashMessage {
@@ -248,6 +253,7 @@ body {
 
 .navbar-brand {
   color: white;
+  font-family: 'Limelight', cursive;
 }
 
 #film-reel-img {
@@ -279,8 +285,9 @@ body {
 }
 
 .form-signin h4 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 #loginBtn {
@@ -680,11 +687,188 @@ body {
   }
 }
 
-/* @media (min-width: 768px) {
-  .watchlist-card {
-    margin: auto;
+@media (min-width: 700px) and (min-height: 600px) {
+  /* Index */
+  #indexImg {
+    height: 300px;
   }
-} */
+
+  #indexPosterImg img {
+    margin-bottom: 0;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .welcome-message {
+    font-size: 1.6rem;
+  }
+
+  #indexIntro h2 {
+    font-size: 1.2rem;
+  }
+
+  #indexIntro h3 {
+    font-size: 1.2rem;
+  }
+
+  .footer-copyright p {
+    font-size: 1rem;
+  }
+
+  /* Login */
+  .form-signin h4 {
+    font-size: 1.4rem;
+  }
+
+  .fa-right-to-bracket {
+    font-size: 1.7rem;
+  }
+
+  .form-group label {
+    font-size: 1.3rem;
+  }
+
+  #loginBtn {
+    font-size: 1.3rem;
+  }
+
+  /* Register page */
+  .sign-up {
+    font-size: 1.5rem;
+  }
+
+  #sign-up-btn {
+    font-size: 1.3rem;
+  }
+
+  #flashMessage {
+    font-size: 1.2rem;
+  }
+
+  /* search */
+  .welcomeUser {
+    font-size: 1.5rem;
+  }
+
+  .search-description {
+    font-size: 1.3rem;
+  }
+
+  .search-wrapper label {
+    font-size: 1.3rem;
+  }
+
+  .btnSearch {
+    font-size: 1.4rem;
+  }
+
+  #search {
+    font-size: 1.3rem;
+  }
+
+  .fa-magnifying-glass {
+    font-size: 1.5rem;
+  }
+
+  /* Review Form */
+  #film-review-form-title {
+    font-size: 1.4rem;
+  }
+
+  .fa-file-circle-plus {
+    font-size: 1.5rem;
+  }
+
+  .form-group p {
+    font-size: 1.2rem;
+    margin-top: -10px;
+  }
+
+  .form-group label {
+    font-size: 1.2rem;
+  }
+
+  #writtenReview {
+    font-size: 1.2rem;
+  }
+
+  #watchlist_id {
+    font-size: 1.2rem;
+  }
+  
+  #reviewSubmit {
+    font-size: 1.3rem;
+  }
+
+  /* My reviews */
+  .reviewWelcome h3 {
+    font-size: 1.5rem;
+  }
+
+  .reviewWelcome p {
+    font-size: 1.3rem;
+  }
+
+  .fa-file-lines {
+    font-size: 1.7rem;
+  }
+
+  .addFilmBtn {
+    font-size: 1.2rem;
+  }
+
+  .accordion-button {
+    font-size: 1.2rem !important;
+  }
+
+  .accordion-body {
+    font-size: 1.1rem;
+  }
+
+  /* My Lists */
+  .filmListTitle {
+    font-size: 1.5rem;
+  }
+
+  .filmListDescription {
+    font-size: 1.2rem;
+  }
+
+  .addWatchListBtn {
+    font-size: 1.2rem;
+  }
+
+  .card-body h5 {
+    font-size: 1.3rem;
+  }
+
+  .card-body h6 {
+    font-size: 1.2rem;
+  }
+
+  .card-buttons a {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 464px) {
+  #indexIntro .create {
+    margin-bottom: 15px;
+    padding: 3px;
+  }
+  
+  #indexIntro .organise {
+    padding: 3px;
+    margin-bottom: 15px;
+  }
+  
+  #indexIntro .share {
+    padding: 3px;
+    margin-bottom: 15px;
+  }
+}
 
 /* BUG: Each row on larger screens is opening to the same size when the accordion is clicked 
    Film rating display page doesn't have same issue as search results, find out why */
