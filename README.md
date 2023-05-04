@@ -2,8 +2,8 @@
 
 Reel Reviews is a film review website where users can search for a film by its title, receive information about that film (the poster image, title, release date, and description) and then rate and review it. The user can create, edit, and delete film lists, along with creating, editing and deleting film reviews. The website was developed mobile first but is fully responsive on all standard screen sizes. 
 
-![Image of my responsive website](#)
-[Link to the deployed site](#)
+![Image of my responsive website](#) !!!!!! FINISH !!!!!
+[Link to the deployed site](#) !!!! FINISH !!!!!!
 
 ## Contents 
 
@@ -284,11 +284,24 @@ The site has been tested rigorously throughout development and after development
 | 2. Multiple times throughout development I realised that my models were insufficient in some way, primarily by them not storing the correct data ([e.g](/filmreview/docs/Bugs/users-model-bug.png)), or some fields having required attributes when they shouldn't which caused significant issues with the different forms and databases working together | Yes | I reached out to tutor support to find out how to drop these database tables in order to migrate changes to my models. I did so by typing the following into the terminal: set_pg, psql -d filmreview to access the database, \c to connect, \dt to see the database tables, DROP TABLE table_name to empty these tables of all data. I could then migrate my model changes by typing the following into the terminal: python3 to access the Python interpreter, from filmreview import db to import the database, db.create_all() to recreate the database tables, exit() to leave the Python interpreter |
 | 3. When attempting to create my add_review.html file and have this add data to the Film database I wanted to use a Jinja loop to loop through the film information provided by the API so that the review form was pre-populated with the film poster image and title. I tried to use the API data received from the search function in the add_film function but this returned as [undefined](/filmreview/docs/Bugs/list_film-is-undefined-bug.png). I tried to fix this issue by setting it to session storage but the size of data was too large for this. | Yes, partially | I contacted student support who informed me that they couldn't help as the API data retrieval was too specific, I unfortunately couldn't make much sense of the API documentation so was unable to achieve what I wanted. Instead I used had to ask users to type the film title in themselves without pre-populating that data which is disappointing but the form functions perfectly with the database structure and the nature of the site | 
 | 4. Towards the end of development I encountered a bug in the My Reviews page whereby the delete modal would only appear for review cards after the 1st card if the 1st card's accordion was dropped down. This meant that there was no way to delete reviews after the first appearing review without telling the user to also drop down the accordion of the first review card | Yes | Oisin from tutor support helped me to figure out that if I moved the delete modal outside of the accordion container it would work perfectly for all review cards without the first accordion needing to be dropped down |
+| 5. One minor aesthetic bug that I'm not happy with is that when a user searches a particular film and clicked on the accordion to bring down one film card's information it extends the bottom of the other film cards in that row [e.g](/filmreview/docs/Bugs/aesthetic-bug.png) | No | I cannot find out what is causing this to happen, my best guess is that this is something to do with the default styling of the Bootstrap card and accordion material. I've tried to change CSS properties to solve this issue with no luck so far, I'm unsatisfied with how this looks but it doesn't affect the functionality of the site so I am unfortunately having to submit the project as is |
 
 ## Credits
 ### Code Sections
+* I utilised the [BookWorm repo](https://github.com/kera-cudmore/BookWorm) from Kera Cudmore, a Code Institute alumni, to see how she approached creating a review site. I used some of her base functionality as inspiration for my own but my own work diverges heavily from hers
+* To make my copyright date automatically update I used [Kerstin Martin's](https://kerstinmartin.com/blog/copyright-notice) blog post to find out how to make this function
+* I used the [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/utils/) Security documentation in order to create my password hashing to ensure the database password data is secure
+* I referred to the [PrettyPrinted](https://github.com/PrettyPrinted/youtube_video_code/blob/master/2017/03/03/Build%20a%20User%20Login%20System%20With%20Flask-Login%2C%20Flask-WTForms%2C%20Flask-Bootstrap%2C%20and%20Flask-SQLAlchemy/building_user_login_system/finish/app.py) Youtube video and GitHub repository to aid me in creating a login system using Flask-Login, WTForms, and Bootstrap
+* A CI tutor sent me this [link](https://www.commandprompt.com/education/how-to-drop-a-table-in-postgresql/#:~:text=The%20DROP%20TABLE%20command%20is%20used%20to%20delete%2Fdrop%20a,the%20table%20to%20be%20dropped) to help me to drop a table in PostgreSQL so that I could migrate changes to my models
 
 
 ### Media
+1. [Favicon and navbar logo by fjstudio](https://www.flaticon.com/free-icon/film_1101762?term=film&related_id=1101762)
+2. [Parasite film poster](https://www.rottentomatoes.com/m/parasite_2019#&gid=1&pid=12)
+3. [Everything Everywhere All At Once film poster](https://a24films.com/films/everything-everywhere-all-at-once)
+4. [Us film poster](https://www.rottentomatoes.com/m/us_2019#&gid=1&pid=5)
 
 ## Acknowledgements
+* I'd like to acknowledge the authors of the code sections credited above as without them this project may not have been possible
+* I'd like to thank my college mentor Robert Mclaughlin, and my CI mentor Akshat Garg for their input and advice throughout the development of this project and throughout the course itself
+* Finally I'd like to thank my CI cohort to providing moral support, and advice on work throughout this project
