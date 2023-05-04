@@ -121,7 +121,13 @@ The Reel Reviews website is comprised of 7 different sections, Home, Signup, Log
   * A business goal for a future implementation would be to allow users to add their friends by username so they could see what their friends have watched and reviewed. It would also be great if users could comment on, or like these reviews to provide a sense of interactivity and communication between users.
 
 ### Accessibility 
-!!!!!!!!!! Need to have a deployed site !!!!!!!!!!!
+As always accessibility is a constant thought throughout the planning and development of any project
+* [Lighthouse Accessibility Score]()
+* I prioritised using fonts that are readable and dyslexia friendly, with a film site many suggested fonts were ideal for film posters yet were much more difficult to read. This informed my decision to choose simpler fonts to maintain readability for every user. By developing my site mobile first I was able to ensure that font size is always readable no matter the screen size, therefore ensuring that all text is fully accessible
+* Semantic HTML was used throughout the site with the inclusion of descriptive alt tags wherever necessary, and aria labels to allow screen readers to describe what the purpose of different buttons are
+* I used the [Ally Color Contrast Accessibility Validator]() to check for any colour contrast issues and received the following result
+* I used the [WAVE]() Web Accessibility tool to ensure there were no accessibility issues for the site. This resulted in the following message
+!!!!!! Finish Accessibility !!!!!!
 
 ### Wireframes
 !!!!!! Need to complete !!!!!
@@ -168,6 +174,7 @@ I used the W3 Nu HTML Validator multiple times throughout development to ensure 
 * [Add Film Review page](/filmreview/docs/testing/review-form-HTML-check.png) the Film Review page returned 2 errors due to the jinja templating being used, the errors ask me to add things that aren't possible due to how the code works. These errors do not affect the user in any way but hopefully in the future I can find a way around these errors
 * [My Reviews page](/filmreview/docs/testing/review-page-HTML-check.png)
 * [My Film Lists page](/filmreview/docs/testing/lists-HTML-check.png)
+* [Film List Form](/filmreview/docs/testing/film-form-HTML-check.png)
 
 ### W3C CSS Validation Service
 * [CSS Check](/filmreview/docs/testing/css-validate.png)
