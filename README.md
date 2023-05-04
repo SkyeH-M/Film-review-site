@@ -279,9 +279,15 @@ The site has been tested rigorously throughout development and after development
 ## Bugs
 
 | Bug | Have this been solved? | How? |
+| --- | --- | --- |
+| 1. At the beginning of developing my models and routes.py file I encountered an issue whereby the Register form worked to return information but the login form did not | Yes | I realised that I hadn't included a {{ form.hidden_tag() }} on my login form in login.html whereas I had done so with signup.html. This immediately resolved the issue |
+| 2. Multiple times throughout development I realised that my models were insufficient in some way, primarily by them not storing the correct data ([e.g](/filmreview/docs/Bugs/users-model-bug.png)), or some fields having required attributes when they shouldn't which caused significant issues with the different forms and databases working together | Yes | I reached out to tutor support to find out how to drop these database tables in order to migrate changes to my models. I did so by typing the following into the terminal: set_pg, psql -d filmreview to access the database, \c to connect, \dt to see the database tables, DROP TABLE table_name to empty these tables of all data. I could then migrate my model changes by typing the following into the terminal: python3 to access the Python interpreter, from filmreview import db to import the database, db.create_all() to recreate the database tables, exit() to leave the Python interpreter |
+| 3. When attempting to create my add_review.html file and have this add data to the Film database I wanted to use a Jinja loop to loop through the film information provided by the API so that the review form was pre-populated with the film poster image and title. I tried to use the API data received from the search function in the add_film function but this returned as [undefined](/filmreview/docs/Bugs/list_film-is-undefined-bug.png). I tried to fix this issue by setting it to session storage but the size of data was too large for this. | Yes, partially | I contacted student support who informed me that they couldn't help as the API data retrieval was too specific, I unfortunately couldn't make much sense of the API documentation so was unable to achieve what I wanted. Instead I used had to ask users to type the film title in themselves without pre-populating that data which is disappointing but the form functions perfectly with the database structure and the nature of the site | 
+| 4. Towards the end of development I encountered a bug in the My Reviews page whereby the delete modal would only appear for review cards after the 1st card if the 1st card's accordion was dropped down. This meant that there was no way to delete reviews after the first appearing review without telling the user to also drop down the accordion of the first review card | Yes | Oisin from tutor support helped me to figure out that if I moved the delete modal outside of the accordion container it would work perfectly for all review cards without the first accordion needing to be dropped down |
 
 ## Credits
 ### Code Sections
+
 
 ### Media
 

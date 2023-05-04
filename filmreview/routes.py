@@ -1,11 +1,4 @@
-# Bugs
-# 1) FIX- registerform works to return h1 but loginform does not-
-# 1) didn't include form.hidden_tag() on login!
-# How to get Bootstrap custom select via models.py for genre?
-
-
 from flask import render_template, request, redirect, url_for, flash, session
-# installed flask-bootstrap with 'pip install flask-bootstrap'
 from filmreview import app, db, os
 from filmreview.models import Watch_list, Users, Film
 # below from Pretty Printed
