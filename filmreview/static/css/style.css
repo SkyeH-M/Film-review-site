@@ -28,6 +28,14 @@ main {
   font-size: 0.8rem;
 }
 
+.modal-content h5 {
+  color: black;
+}
+
+.modal-content p {
+  color: black;
+}
+
 #flashMessage {
   font-size: 1rem;
   text-align: center;

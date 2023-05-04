@@ -192,4 +192,22 @@ I used the CI Python Linter to test the validity and PEP8 compliance of my Pytho
 ### Wave Testing
 !!!!!!! Need to deploy !!!!!!!
 
-### 
+### Lighthouse Testing
+## Desktop
+
+## Mobile
+
+## Improvements Made
+
+## Manual Testing
+### Testing User Stories
+
+### Full Testing
+
+## Bugs
+## Credits
+### Code Sections
+
+### Media
+
+## Acknowledgements
