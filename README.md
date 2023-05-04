@@ -195,23 +195,91 @@ I used the CI Python Linter to test the validity and PEP8 compliance of my Pytho
 ### Lighthouse Testing
 ## Desktop
 * [Index not logged in](/filmreview/docs/testing/D-index-not-loggedin.png) The only recommendation to improve the performance of the index page is to eliminate render-blocking resources, this is predominantly caused by Bootstrap, Fontawesome, and Google Font links used in my base.html file. I have added defer attributes to Javascript links, and made sure to place script files outside of the head element wherever possible
+* [Index logged in](/filmreview/docs/testing/D-index-loggedin.png)
 * [Log in form](/filmreview/docs/testing/D-Login.png)
 * [Sign up form](/filmreview/docs/testing/D-signup.png)
 * [Search page](/filmreview/docs/testing/D-search.png)
 * [Add film review page](/filmreview/docs/testing/D-review-form.png)
 * [My reviews page](/filmreview/docs/testing/D-my-reviews.png) The only issue with the reviews page was concerning the aria-labels for the review cards as they don't have unique ids. This is due to using a Jinja loop to populate the cards meaning they cannot have unique ids and must be targetted with the same id as one another to function
-
+* [My film lists page](/filmreview/docs/testing/D-filmlists.png) The only recommendation for this page was the same as above with the My Reviews page. I'd like to learn how to avoid this in the future but I'm satisfied with leaving this as in for now
+* [Film list form](/filmreview/docs/testing/D-add-film-list.png)
 
 ## Mobile
+* [Index not logged in](/filmreview/docs/testing/M-index-not-logged-in.png) The performance score for the index page was affected by the same issues for both mobile and browser, see above for a description of these recommendations
+* [Log in form](/filmreview/docs/testing/M-login.png)
+* [Sign up form](/filmreview/docs/testing/M-signup.png)
+* [Search page](/filmreview/docs/testing/M-search.png) The search page again was similarly affected with the render-blocking resources warning as shown for the index page
+* [Add film review page](/filmreview/docs/testing/M-film-review.png) Again this was affected by render-blocking resources
+* [My reviews page](/filmreview/docs/testing/M-film-reviews.png)
+* [My film lists page](/filmreview/docs/testing/M-filmlists.png) The only warning given for performance relates to render-blocking resources
+* [Film list form](/filmreview/docs/testing/M-add-filmlist.png)
 
 ## Improvements Made
+* As briefly mentioned above, the main improvements made as a result of the Lighthouse testing related to adding defer attributes to script links in the base.html file. This improved the rating by 5-10 points on each test but still didn't bring the overall score to above 90, I regret not being able improve this further
+* Additionally I realised I had forgotten to add an alt image tag on the navbar logo which I added after being warned by Lighthouse to do so
+* The accessibility score for both form pages was improved after I received a warning of insufficient colour contrast for the form submit buttons. I altered the background and font colours of both forms and this warning was resolved
 
 ## Manual Testing
 ### Testing User Stories
 
+| User Story | Was this met? | Evidence |
+| --- | --- | --- |
+| 1. Easily register for an account, and login, be given warnings if any information entered is incorrect | Yes, flash message warnings are given for choosing an already taken username, not filling out all required forms, and for entering login information that is incorrect | ![Warning example](/filmreview/docs/signup-form-warning.png)|
+| 2. The site should be fully responsive for all device sizes | Yes, using a mobile first approach, and then adding media queries for larger screen sizes ensured that the site is fully responsive with no issues for any screen sizes | ![Responsivity image](!!!!!!!!!!!!!!) |
+| 3. There should be a broad selection of films available | Yes, while fully testing the site there was only one film that I found was unavailable due to the API not having its film data. An apology message is shown in this instance | ![Film not found](/filmreview/docs/film-not-found.png)|
+| 4. Be able to edit or delete film lists or reviews at any time | Yes, edit and delete buttons are featured on the cards for both film lists and film reviews, with form information being pre-populating so that users know what they are editing. There is also defensive programming used so that when a user clicks delete a modal appears asking if they are sure as this action is permanent | ![Delete Modal](/filmreview/docs/delete-modal.png)|
+| 5. Be readable, aesthetically pleasing, and easily navigable | Yes, I think the styling of the site is aesthetically pleasing and suitable to the theme of the site, along with all text being readable no matter the screen size. The site is easily navigable with a Bootstrap hamburger bar. The site also features logic so that if a user is not logged in they are unable to navigate to pages that require a login to access. If a user who isn't logged in types the url to navigate to a page that required a login they will be redirected to the login page with a flash message explaining they must be logged in| ![Hamburger image](/filmreview/docs/Hamburger-image.png) ![Login required](/filmreview/docs/login-required.png) |
 ### Full Testing
 
+The site has been tested rigorously throughout development and after development was completed, this includes both manual and automated testing to ensure nothing is missed
+* General:
+  * All navbar links direct the user to the correct page, and those that require a user to be logged in are not displayed unless they are logged in
+* Home page:
+  * The navbar hamburger icon when clicked on any page drops down the navbar menu and all links when hovered over become purple to allow the user to know what they are about to click on
+  * All social media links in the footer open in a new tab so as to not redirect the user away from the site for them to not be able to return
+  * The copyright date is automatically updated depending on the year using Javascript found in the base.html file
+* Login page:
+  * The username field field is restricted to a maximum of 20 characters and users are physically incapable of entering anymore
+  * The password field is limited to 80 characters so that a hash can be done meaning that the password is not stored in its original value in the database to ensure security
+  * When hovered the Login button enlarges and the background colour turns light green to encourage users to click it
+  * If a user enters incorrect username or password information they're greeted with a flash message explaining that their username or password is incorrect
+  * When a user does login they're redirected to the search page with a flash message reading "You've been logged in" to alert users that they were successful
+* Sign Up page:
+  * The username field is restricted to 20 characters again and must be unique otherwise a flash message appears stating "This username has already been taken, please choose another"
+  * If a user doesn't enter a valid email they are met with a flash message stating "Invalid email", along with the input bar turning red and a red exclamation mark appearing to indicate an error
+  * When hovered the Sign Up button enlarges and the background colour turns light green to encourage users to click it
+* Search page:
+  * The user is greeted with a personalised welcome message which takes their username from the Users database to acknowledge who has been logged in
+  * When hovered the Search button enlarges and the background colour turns light green to encourage users to click it
+  * If a user attempts to click the Search button without entering any search term they are warned that they must enter a title to click the button
+  * When the Search button is clicked the relevant film accordion cards are displayed featuring its title and the Review button, when the accordion button is clicked the release date and description are also displayed. Each accordion functions individually so the information beyond the accordion will only be displayed for the film card that has been clicked on
+  * When hovered the Review button enlarges and the background colour turns light green to encourage users to click it
+  * When the Review button is clicked the user is brought to the Review A Film form
+  * If a user enters a film title or string that TMDB API doesn't include they receive an apology message and are encouraged to search for another film
+* Film review form:
+  * All required form fields must be filled in or the user will receive a warning asking them to "Please fill in this field"
+  * The star rating system works by allowing the user to select the number star icon that corresponds with the rating they wish to award the film
+  * The written review field is not required to allow users who are in a rush, or simply don't have anything to say to rate the film without having to write a formal review. If a written review is entered there is a minimum character length of 3, with a maximum character length of 200 to ensure the review cannot go on forever. If the maximum character limit is exceeded the textarea doesn't allow anymore characters to be physically entered
+  * The film list selector is a required field and so if a user does not select a list to add their review to they are redirected to the Add Film List form and a message flashes explaining "Please create a Film List before adding reviews"
+  * When a film review form is submitted a message flashes on the screen saying "Your review has been added successfully" to alert the user that their review is complete
+  * When hovered the Submit Review button enlarges and the background colour turns light green to encourage users to click it
+* My Reviews page:
+  * When hovered the Add Film Review button enlarges and the background colour turns light green to encourage users to click it. This button when clicked redirects the user to the Add Film Review form to allow for them to review films both through this button and by searching for film data
+  * Film reviews are displayed in accordion cards where the film title is always displayed and if the accordion button is clicked the star rating and written review attributed to this film will be displayed. The film reviews are sorted by popularity so a user will see all their top rated films at the top of their screen, descending to their most disliked films at the bottom of the screen
+  * The review cards feature edit and delete buttons, both buttons enlarge when hovered over to indicate they can be clicked. The edit button when clicked redirects the user to the Review A Film form where the title, and written review (if completed) of that film is pre-populated. When they submit the edited review they are told "Your review has been updated" by a flash message and the film card reflects these changes
+  * The delete button when clicked opens a modal asking the user if they're sure they wish to delete this review as this is a permanent action, they can then click Cancel, or the X at the modal corner to cancel this action. Or click the red Delete button to permanently delete their review
+* My Films Lists page:
+  * When hovered the Add Film List button enlarges and the background colour turns light green to encourage users to click. When clicked they are redirected to an Add Film List where they can create a list where the list name is a required field, and the genre is optional. The list name field has a maximum character length of 20, and if not filled in a warning will display. The list field features placeholder text giving suggestions for what a user might want to call their list if they have trouble thinking of their first title
+  * The Add film list button when hovered over enlarges and turns a shade of light green, when clicked the user is directed back to the My Film Lists page with a message stating "Your Film List has been successfully created"
+  * If a user clicks the edit button on a film list they are taken to the Edit Film List form where the title of that list is pre-populated. Editing the title or genre changes that data, and a message appears saying "Your film list was edited successfully"
+  * If a user clicks the delete button on a film list a modal appears asking if they're sure as this will also delete all related film reviews and cannot be undone. If the red delete button is now clicked the film list will disappear, along with the related film reviews
+* Logout: 
+  * If the user clicks Log Out in the navbar they are logged out and redirected to the Home page along with a message confirming that they have been logged out. They are now unable to access pages that require login, but regain access to the Log In and Sign Up pages
+
 ## Bugs
+
+| Bug | Have this been solved? | How? |
+
 ## Credits
 ### Code Sections
 

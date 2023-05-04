@@ -39,7 +39,7 @@
       <div class="form-group col-12">
         <label for="watchlist_id">Which film list should this go into?<span class="requiredField">*</span></label>
         <select class="form-select" id="watchlist_id" name="watchlist_id" aria-label="Select which film list to append to" required>
-          <option selected>Choose your film List</option>
+          <option selected>Choose your Film List</option>
           {% for watchlist in watchlists %}
               <option value="{{ watchlist.id}}">{{ watchlist.list_name}}</option>
           {% endfor %}

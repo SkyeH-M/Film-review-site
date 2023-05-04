@@ -24,8 +24,6 @@ bootstrap = Bootstrap4(app)
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
-# below means user is redirected to login page if they try to access
-# login restricted pages
 login_manager.login_view = 'login'
 login_manager.login_message = 'Please sign up or login to view this page'
 api_key = os.environ.get("API_KEY")
@@ -118,6 +116,7 @@ def add_watchlist():
                                genre=request.form.get("genre"))
         db.session.add(watchlist)
         db.session.commit()
+        flash("Your Film List has been successfully created")
         return redirect(url_for("watchlists"))
     return render_template("add_watchlist.html")
 
@@ -172,6 +171,7 @@ def add_film():
             )
             db.session.add(film)
             db.session.commit()
+            flash("You review has been added successfully")
             return redirect(url_for("films"))
 
     # if film list doesn't already exist
