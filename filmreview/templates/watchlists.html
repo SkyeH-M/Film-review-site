@@ -15,9 +15,9 @@
     {% if watchlist.created_by == current_user.username %}
 <div class="card watchlist-card text-center">
     <div class="card-body">
-      <h5 class="card-title watchlist-card-title">{{ watchlist.list_name }}</h5>
-      <h6 class="card-text watchlist-created-by">Username: {{ watchlist.created_by }}</h6>
-      <h6 class="card-text watchlist-genre">Genre: {{ watchlist.genre }}</h6>
+      <h4 class="card-title watchlist-card-title">{{ watchlist.list_name }}</h4>
+      <h5 class="card-text watchlist-created-by">Username: {{ watchlist.created_by }}</h5>
+      <h5 class="card-text watchlist-genre">Genre: {{ watchlist.genre }}</h5>
       <div class="card-buttons">
         <a href="{{ url_for('edit_watchlist', watchlist_id=watchlist.id) }}" class="btn btn-secondary">Edit</a>
         <a href="#modal--{{ watchlist.id }}" class="btn btn-secondary modal-trigger" data-toggle="modal" data-target="#deleteWatchlistModal">Delete</a> 

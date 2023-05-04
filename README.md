@@ -194,6 +194,13 @@ I used the CI Python Linter to test the validity and PEP8 compliance of my Pytho
 
 ### Lighthouse Testing
 ## Desktop
+* [Index not logged in](/filmreview/docs/testing/D-index-not-loggedin.png) The only recommendation to improve the performance of the index page is to eliminate render-blocking resources, this is predominantly caused by Bootstrap, Fontawesome, and Google Font links used in my base.html file. I have added defer attributes to Javascript links, and made sure to place script files outside of the head element wherever possible
+* [Log in form](/filmreview/docs/testing/D-Login.png)
+* [Sign up form](/filmreview/docs/testing/D-signup.png)
+* [Search page](/filmreview/docs/testing/D-search.png)
+* [Add film review page](/filmreview/docs/testing/D-review-form.png)
+* [My reviews page](/filmreview/docs/testing/D-my-reviews.png) The only issue with the reviews page was concerning the aria-labels for the review cards as they don't have unique ids. This is due to using a Jinja loop to populate the cards meaning they cannot have unique ids and must be targetted with the same id as one another to function
+
 
 ## Mobile
 
