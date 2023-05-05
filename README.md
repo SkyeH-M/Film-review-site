@@ -130,7 +130,17 @@ As always accessibility is a constant thought throughout the planning and develo
 !!!!!! Finish Accessibility !!!!!!
 
 ### Wireframes
-!!!!!! Need to complete !!!!!
+I designed the following wireframes before I began active development of my project, each page is represented in both desktop and mobile sizes to show the desired responsivity
+* [Home page](/filmreview/docs/Wireframes/index.png)
+* [Log in page](/filmreview/docs/Wireframes/login.png)
+* [Sign Up page](/filmreview/docs/Wireframes/Sign-up.png)
+* [Search page](/filmreview/docs/Wireframes/search.png)
+* [Add Film Review page](/filmreview/docs/Wireframes/film-review-form.png)
+* [My Reviews page](/filmreview/docs/Wireframes/my-reviews.png)
+* [My Film Lists page](/filmreview/docs/Wireframes/film-lists.png)
+* [Add Film list page](/filmreview/docs/Wireframes/add-film-list.png)
+* Changes to the above wireframes:
+  * The core change to the wireframes seen above is in regards to me not being able to program the film review form so that the film poster image and title were pre-populated based on the film card that the user clicked
 
 ### Languages Used
 * This project utilised HTML, CSS, and Python predominantly, with a small amount of JavaScript being used to automatically update the copyright information in the footer
@@ -151,6 +161,7 @@ As always accessibility is a constant thought throughout the planning and develo
 * [Google Fonts](https://fonts.google.com/) provided the links for both fonts used on the site, and aided in selecting fonts that are complimentary to one another
 * [Heroku](https://www.heroku.com/?) was used in addition to Github as the deployment platform for this site due to the use of databases
 * [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) was used due to it being a templating lanuage which enabled me to have a base.html template with all other html pages inheriting core functionality from this
+* [PostgreSQL](https://www.postgresql.org/) provided a relational database for the foundation of the project
 * [SQLAlchemy](https://www.sqlalchemy.org/) was used for the creation and maintenance of the relational databases used in the project
 * [Tech Sini](https://techsini.com/multi-mockup/index.php) aided in the creation of a multi-device mockup image so that I could test the appearance and functionality of the site on multiple device sizes, and provided the image seen at the beginning of this document
 * [WAVE](https://wave.webaim.org/) Web Accessibility Evaluation Tool was used to test my site against accessibility criteria.
