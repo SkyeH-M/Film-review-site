@@ -300,6 +300,7 @@ The site has been tested rigorously throughout development and after development
 2. [Parasite film poster](https://www.rottentomatoes.com/m/parasite_2019#&gid=1&pid=12)
 3. [Everything Everywhere All At Once film poster](https://a24films.com/films/everything-everywhere-all-at-once)
 4. [Us film poster](https://www.rottentomatoes.com/m/us_2019#&gid=1&pid=5)
+5. [Star Icon for film rating](https://www.i2symbol.com/symbols/stars)
 
 ## Acknowledgements
 * I'd like to acknowledge the authors of the code sections credited above as without them this project may not have been possible
