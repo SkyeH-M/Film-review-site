@@ -187,7 +187,7 @@ def films():
 def edit_film(film_id):
     film = Film.query.get_or_404(film_id)
     watchlists = list(Watch_list.query.order_by(Watch_list.list_name).all())
-    if request.method == "POST":
+    if request.method == "POST" and watchlists.created_by == current_user.username:
         film.film_title = request.form.get("film_title")
         film.star_rating = request.form.get("rating")
         film.written_review = request.form.get("writtenReview")
