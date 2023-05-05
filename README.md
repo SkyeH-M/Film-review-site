@@ -2,8 +2,10 @@
 
 Reel Reviews is a film review website where users can search for a film by its title, receive information about that film (the poster image, title, release date, and description) and then rate and review it. The user can create, edit, and delete film lists, along with creating, editing and deleting film reviews. The website was developed mobile first but is fully responsive on all standard screen sizes. 
 
-![Image of my responsive website](#) !!!!!! FINISH !!!!!
-[Link to the deployed site](#) !!!! FINISH !!!!!!
+Due to most of the pages of my site being login required I was unfortunately unable to get images of each page of my site on the Tech Sini responsivity mockup. But all responsivity can be seen using the link to the deployed site below
+
+![Image of my responsive website](/filmreview/docs/tech-sini.png)
+[Link to the deployed site](https://reel-reviews-shm.herokuapp.com/)
 
 ## Contents 
 
@@ -125,9 +127,8 @@ As always accessibility is a constant thought throughout the planning and develo
 * [Lighthouse Accessibility Score]()
 * I prioritised using fonts that are readable and dyslexia friendly, with a film site many suggested fonts were ideal for film posters yet were much more difficult to read. This informed my decision to choose simpler fonts to maintain readability for every user. By developing my site mobile first I was able to ensure that font size is always readable no matter the screen size, therefore ensuring that all text is fully accessible
 * Semantic HTML was used throughout the site with the inclusion of descriptive alt tags wherever necessary, and aria labels to allow screen readers to describe what the purpose of different buttons are
-* I used the [Ally Color Contrast Accessibility Validator]() to check for any colour contrast issues and received the following result
-* I used the [WAVE]() Web Accessibility tool to ensure there were no accessibility issues for the site. This resulted in the following message
-!!!!!! Finish Accessibility !!!!!!
+* I used the [Ally Color Contrast Accessibility Validator](https://color.a11y.com/) to check for any colour contrast issues and received the following result ![ALLY Report](/filmreview/docs/ally-check.png)
+* I used the [WAVE](https://wave.webaim.org/) Web Accessibility tool to ensure there were no accessibility issues for the site. This resulted in a message of "Congratulations! No errors were detected!"
 
 ### Wireframes
 I designed the following wireframes before I began active development of my project, each page is represented in both desktop and mobile sizes to show the desired responsivity
@@ -171,7 +172,52 @@ I designed the following wireframes before I began active development of my proj
 * In addition to the Frameworks, Libraries, and Programs used I encorporated the use of [TMDB API](https://developers.themoviedb.org/3/getting-started) which allowed me to connect to the API, retrieve their film data, and display that to users when they search for films. The use of this API was integral to the functioning of my site
 
 ### Deployment 
-!!!!! Need to deploy and write down steps for Heroku !!!!!!
+
+Reel Reviews is deployed using Heroku by undertaking the following actions:
+
+ElephantSQL
+1. Navigate to the ElephantSQL site and login with Github
+2. Click the "Create New Instance" button
+3. Give your plan a name (typically the name of your project), select the Tiny Turtle free plan then click the "Select Region" button
+4. Select a data center near you (I selected London), then click the "Review" button
+5. Click the "Create Instance" button
+6. Return to the ElephantSQL dashboard and click on the database instance name for the project
+7. In the URL section, click the copy icon to copy the database URL to your clipboard and save this for later
+
+In Your Workspace
+1. Generate the requirements.txt file with the following command typed into the terminal "pip freeze --local > requirements.txt"
+2. Create a Procfile and add the following command to it "web: python run.py", ensuring there's no blank line at the end of this file
+3. Save all files then add, commit, and push changes to Github
+
+Heroku
+1. Log into Heroku.com and click the "New" button, then click "Create a new app"
+2. Choose a unique name for this app, select the region closest to you (I selected Europe) and click "Create App"
+3. Navigate to the Settings tab of this new app, and click the "Reveal Config Vars" button
+4. Paste the database URL from the ElephantSQL site that we copied earlier into a var with the key of DATABASE_URL, and value of that database URL, then click the "Add" button
+5. Add each of your other environment variables except DEVELOPMENT and DB_URL from your env.py file. In this step I also had to add my unique API_KEY. Temporarily set DEBUG to True, but this must be changed before submission of the project
+
+Active Deployment
+1. Navigate to the "Deploy" tab of your app
+2. In the Deployment method section, select "Connect to GitHub"
+3. Search for the relevant repo and click the "Connect" button
+4. Optional: You can click Enable Automatic Deploys which will trigger anytime code is pushed to your GitHub repository
+5. Use the Manual Deploy section and click the "Deploy Branch" button to start the build process
+6. We have our project in place, and we have an empty database ready for use. To add tables to our database we can click the "More" button and select "Run console"
+7. Into the terminal type python3 and hit enter, then type from filmreview import db, db.create_all()
+8. Once this is done, type exit() to exit the console
+9. Finally, your app should now be running so click the "Open app" button
+
+How to Fork
+1. Login to your GitHub account
+2. Navigate to the Film-review-site repository and click the Fork button in the top right corner
+
+How to Clone
+1. Login to your GitHub account
+2. Navigate to the Film-review-site repository
+3. Click the green "Code" button next to the "Gitpod" button
+4. Click "open with GitHub Desktop" 
+5. Click the "Choose..." button and navigate to a local path where you want to place the cloned repository
+6. Click the "Clone" button
 
 ## Testing
 ## Automated Testing
@@ -201,7 +247,14 @@ I used the CI Python Linter to test the validity and PEP8 compliance of my Pytho
 * [Run File](/filmreview/docs/testing/run-check.png)
 
 ### Wave Testing
-!!!!!!! Need to deploy !!!!!!!
+* I assessed my site after deployment using the WAVE tool, and I received the following reports explaining that no errors were detected:
+* [Index page](/filmreview/docs/wave-index.png)
+* [Login page](/filmreview/docs/wave-login.png)
+* [Sign Up page](/filmreview/docs/wave-signup.png)
+* Unfortunately due to some of my pages requiring a user to be logged in to access them I was unable to WAVE test each of my pages, but I have manually combed through each page to ensure that accessibility has been prioritised throughout
+* The WAVE test did raise 2 warnings:
+1. "Suspicious alternative text" for the poster image on the Home page, I altered this text to something more appropriate so have now resolved this issue
+2. "Redundant link" as I have the navbar Title linked to the homepage, along with a Home link on the navbar itself. I don't find this link to be redundant as I don't think everybody knows that you can click a title to return to the home page, therefore I'm leaving this decision as it is
 
 ### Lighthouse Testing
 ## Desktop
@@ -236,7 +289,7 @@ I used the CI Python Linter to test the validity and PEP8 compliance of my Pytho
 | User Story | Was this met? | Evidence |
 | --- | --- | --- |
 | 1. Easily register for an account, and login, be given warnings if any information entered is incorrect | Yes, flash message warnings are given for choosing an already taken username, not filling out all required forms, and for entering login information that is incorrect | ![Warning example](/filmreview/docs/signup-form-warning.png)|
-| 2. The site should be fully responsive for all device sizes | Yes, using a mobile first approach, and then adding media queries for larger screen sizes ensured that the site is fully responsive with no issues for any screen sizes | ![Responsivity image](!!!!!!!!!!!!!!) |
+| 2. The site should be fully responsive for all device sizes | Yes, using a mobile first approach, and then adding media queries for larger screen sizes ensured that the site is fully responsive with no issues for any screen sizes | ![Responsivity image](/filmreview/docs/responsive-big.png) ![Responsivity Image 2](/filmreview/docs/responsive-tiny.png)|
 | 3. There should be a broad selection of films available | Yes, while fully testing the site there was only one film that I found was unavailable due to the API not having its film data. An apology message is shown in this instance | ![Film not found](/filmreview/docs/film-not-found.png)|
 | 4. Be able to edit or delete film lists or reviews at any time | Yes, edit and delete buttons are featured on the cards for both film lists and film reviews, with form information being pre-populating so that users know what they are editing. There is also defensive programming used so that when a user clicks delete a modal appears asking if they are sure as this action is permanent | ![Delete Modal](/filmreview/docs/delete-modal.png)|
 | 5. Be readable, aesthetically pleasing, and easily navigable | Yes, I think the styling of the site is aesthetically pleasing and suitable to the theme of the site, along with all text being readable no matter the screen size. The site is easily navigable with a Bootstrap hamburger bar. The site also features logic so that if a user is not logged in they are unable to navigate to pages that require a login to access. If a user who isn't logged in types the url to navigate to a page that required a login they will be redirected to the login page with a flash message explaining they must be logged in| ![Hamburger image](/filmreview/docs/Hamburger-image.png) ![Login required](/filmreview/docs/login-required.png) |
